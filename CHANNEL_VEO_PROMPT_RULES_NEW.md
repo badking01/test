@@ -298,7 +298,9 @@ If a field contains abstract thesis language, convert it into visible space, bod
 
 The channel uses an **aged historical-documentary moving-image look**.
 
-The image should feel:
+This is not a VHS, glitch, damaged tape, or fake retro-filter style.
+
+The global look should feel:
 
 ```text
 old
@@ -309,6 +311,7 @@ material
 observational
 historically grounded
 slightly time-worn
+softened by analog air
 physically captured
 non-glossy
 ```
@@ -324,6 +327,11 @@ music-video stylization
 heroic ruler worship
 over-saturated palace spectacle
 newly rendered CGI
+VHS glitch
+damaged tape artifact
+heavy film scratch overlay
+unstable distortion
+fake retro filter
 ```
 
 This global visual signature is distributed across fields.
@@ -336,9 +344,9 @@ Do **not** force the entire old-video style into one field.
 |---|---|
 | `camera` | anamorphic lens aesthetic, restrained observational framing, subtle lens aberration, soft edge roll-off, controlled movement |
 | `material_textures` | worn physical surfaces, dust, fabric wear, tarnished metal, rough handmade material, matte aging |
-| `lighting_atmosphere` | vintage analog haze, softened natural light, dim interiors, diffused air, suspended dust, overcast softness |
-| `color_grading` | desaturated palette, cold slate-grays, deep charcoal, muted earth tones, low contrast, faded archival tone |
-| `visual_constraints` | keep old-video imperfections subtle and realistic; avoid clean digital sharpness, heavy artificial filter damage, excessive blur, glossy finish |
+| `lighting_atmosphere` | vintage analog tape aesthetic expressed as subtle analog air particles that reduce AI sharpness; active location lighting logic only |
+| `color_grading` | fixed base grade: deep desaturation, cold slate-greys, deep charcoal, low contrast |
+| `visual_constraints` | keep analog softness subtle, realistic, and non-destructive; avoid clean digital sharpness, glossy finish, VHS glitch, heavy filter damage, destructive blur, film scratches, unstable distortion, and fake retro effects |
 
 ### 9.2 Global Camera Signature
 
@@ -378,37 +386,38 @@ material wear
 film grain as color treatment
 ```
 
-Good camera examples:
-
-```text
-locked medium-wide observational frame, anamorphic lens aesthetic, subtle lens aberration, soft edge roll-off
-static frontal composition from a formal axis, vintage optical softness, controlled depth of field
-slow controlled push-in from a wide frame toward the subject, mild edge falloff
-macro close-up on hands and object contact, shallow depth of field, soft optical edge roll-off
-```
-
 ### 9.3 Global Lighting Signature
 
 `lighting_atmosphere` carries the channel-level light and air behavior.
 
-Default lighting signature:
+Global channel contribution:
 
 ```text
-vintage analog haze, softened natural light, dim or diffused atmosphere, restrained shadow behavior
+subtle vintage analog tape aesthetic expressed as analog air particles, soft volumetric scattering, and reduced digital sharpness
 ```
+
+Location lighting is conditional:
+
+```text
+INT shot → use indoor side-light logic
+EXT shot → use outdoor diffused overcast logic
+INT/EXT threshold shot → use controlled mixed-light logic only when both spaces are visibly present
+```
+
+Do not include both indoor and outdoor lighting logic by default.
 
 `lighting_atmosphere` may include:
 
 ```text
-indoor or outdoor light source
-side light
-overcast light
+active light source
+active location light logic
 shadow behavior
 dimness
 air quality
-dust / haze / smoke / mist
-interior / exterior light relationship
+dust / haze / smoke / mist when physically appropriate
+interior / exterior light relationship only when visible in the same frame
 environmental brightness
+soft analog air particles
 ```
 
 It must not include:
@@ -419,29 +428,33 @@ lens distortion
 color palette
 props
 material hierarchy
+VHS glitch
+tape damage
+film scratches
+heavy retro filter effects
 ```
 
 ### 9.4 Global Color Signature
 
 `color_grading` carries the channel-level tonal treatment.
 
-Default color signature:
+Fixed global base grade:
 
 ```text
-desaturated, low contrast, cold slate-grays, deep charcoal, muted earth tones, faded archival tone
+deep desaturation, cold slate-greys, deep charcoal, low contrast
 ```
 
 `color_grading` may include:
 
 ```text
-palette
-saturation
-contrast
-black level
-shadow tone
-warmth or coldness
-archival fade
-tonal treatment
+deep desaturation
+cold slate-greys
+deep charcoal
+low contrast
+muted tonal range
+reduced color intensity
+controlled black level
+restrained archival tonal treatment
 ```
 
 It must not include:
@@ -452,25 +465,39 @@ physical haze
 camera behavior
 props
 material surfaces
+fake retro color bleed
+damaged-tape color cast
+heavy sepia filter
+fake retro color cast
 ```
 
 ---
 
 ## 10. Field Matrix Composition Model
 
-Each final `prompt_raw` field is composed from layered sources.
+Every final `prompt_raw` field may be composed from layered sources.
 
-Composition order:
+This model applies to **all 10 fields**, not only `lighting_atmosphere` or `color_grading`.
+
+Composition layers:
 
 ```text
-1. Global Channel Contract
-2. Global Visual Signature
-3. Session Domain Overlay
-4. Era / Period Overlay
-5. Social Tier / Role Overlay
-6. Location / Space Overlay
-7. Mechanism / Concept Overlay
-8. Shot Intent
+Layer 1 — Global Channel Contract
+Layer 2 — Global Visual Signature
+Layer 3 — Session Domain Overlay
+Layer 4 — Era / Period Overlay
+Layer 5 — Social Tier / Role Overlay
+Layer 6 — Location / Space Overlay
+Layer 7 — Mechanism / Concept Overlay
+Layer 8 — Shot Intent
+```
+
+Core rule:
+
+```text
+Layers are selective, not cumulative.
+Use only the layers relevant to the active shot.
+Do not dump all available layer data into a field.
 ```
 
 The final field must be written as a clean visual instruction.
@@ -480,35 +507,50 @@ Do not expose layer names inside the final `prompt_raw`.
 Bad final field:
 
 ```text
-Global says old optical; Era says Zhou; Tier says royal; Location says ritual hall.
+Layer 1 says old optical; Layer 4 says Qin; Layer 5 says elite; Layer 6 says record room.
 ```
 
 Good final field:
 
 ```text
-dim ritual hall interior with softened daylight, restrained royal authority, dusty still air, and aged ceremonial surfaces
+dim record-room interior with a protected clerical workspace, primitive low illumination, floating dust, and analog-softened air
 ```
 
 ### 10.1 Layer Responsibility
 
 | Layer | Typical source | Role |
 |---|---|---|
-| Global Channel Contract | `CHANNEL_VEO_PROMPT_RULES.md` | field meaning, field ownership, short-clip discipline |
-| Global Visual Signature | `CHANNEL_VEO_PROMPT_RULES.md` | aged historical-documentary video look |
-| Session Domain Overlay | `SESSION_CONTROL.md` | civilization/session meaning and guardrails |
-| Era / Period Overlay | `ERA_LOCK.md` | period accuracy, visual culture, material availability |
-| Social Tier / Role Overlay | `ERA_LOCK.md` or session files | class/role-specific body, access, objects, hierarchy |
-| Location / Space Overlay | `ERA_LOCK.md` or episode visual files | architecture, light behavior, spatial logic |
-| Mechanism / Concept Overlay | beat/shot planning | what the shot is making visible |
-| Shot Intent | Optimized Shot Plan / projectbeat | exact subject, action, layout, and visual goal |
+| Layer 1 — Global Channel Contract | `CHANNEL_VEO_PROMPT_RULES.md` | field meaning, field ownership, short-clip discipline |
+| Layer 2 — Global Visual Signature | `CHANNEL_VEO_PROMPT_RULES.md` | channel-level optical, lighting, color, material softness |
+| Layer 3 — Session Domain Overlay | `SESSION_CONTROL.md` | civilization/session meaning and guardrails |
+| Layer 4 — Era / Period Overlay | `ERA_LOCK.md` | period accuracy, visual culture, materials, technology |
+| Layer 5 — Social Tier / Role Overlay | `ERA_LOCK.md` or session tier files | class/role-specific body, access, objects, hierarchy |
+| Layer 6 — Location / Space Overlay | `ERA_LOCK.md`, episode visual files, or shot location | architecture, light behavior, spatial logic |
+| Layer 7 — Mechanism / Concept Overlay | beat/shot planning | what the shot makes visible |
+| Layer 8 — Shot Intent | Optimized Shot Plan / projectbeat | exact subject, action, layout, and visual goal |
 
-### 10.2 Field Composition Matrix
+### 10.2 Field Source Ownership Matrix
+
+| Field | Global / Channel | Era / Period | Tier / Role | Location / Space | Shot Intent |
+|---|---|---|---|---|---|
+| `context` | field contract for historical-spatial logic | era/world anchor | optional | required | required |
+| `subject` | human/object visibility, realism, natural posture | costume, grooming, period body/object logic | required when social role matters | optional | required |
+| `camera` | lens, framing, angle, movement, optical capture | usually none | usually none | optional framing influence | required |
+| `composition_blocking` | foreground/midground/background grammar, hierarchy grammar | optional spatial tradition | hierarchy, access, rank | required | required |
+| `action` | motion discipline, controlled movement/stillness | period gesture/labor/ritual vocabulary | role-specific behavior | optional | required |
+| `props` | meaningful-object discipline | period object pool | access-controlled object pool | location object pool | required |
+| `material_textures` | tactile realism, matte aging, anti-AI-smoothness | period material pool | material quality by class | surface identity | required |
+| `lighting_atmosphere` | analog air particles, soft volumetric scattering | lighting technology | power/tier atmosphere | active INT/EXT/threshold lighting logic | required |
+| `color_grading` | fixed base grade | period color/material family | optional status accent | optional | required |
+| `visual_constraints` | Veo-safe guardrails | period guardrails | tier access guardrails | location guardrails | shot-specific risks |
+
+### 10.3 Field Composition Matrix
 
 | Field | Channel Contract | Visual Signature | Era / Period | Tier / Role | Location | Mechanism | Shot Intent |
 |---|---|---|---|---|---|---|---|
 | `context` | required | no | required | optional | required | required | required |
-| `subject` | required | no | required when human/object is period-specific | required when social role matters | optional | optional | required |
-| `camera` | required | required | usually none | none | optional | optional | required |
+| `subject` | required | optional | required when period-specific | required when role matters | optional | optional | required |
+| `camera` | required | required | usually none | usually none | optional | optional | required |
 | `composition_blocking` | required | optional | optional | required when hierarchy matters | required | required | required |
 | `action` | required | optional | optional | required when gesture/labor/ritual matters | optional | required | required |
 | `props` | required | no | required | required when class/role matters | required | optional | required |
@@ -517,7 +559,7 @@ dim ritual hall interior with softened daylight, restrained royal authority, dus
 | `color_grading` | required | required | optional | optional | optional | optional | required |
 | `visual_constraints` | required | required | required | optional | optional | optional | required |
 
-### 10.3 Matrix Merge Rules
+### 10.4 Matrix Merge Rules
 
 When composing a field:
 
@@ -532,6 +574,20 @@ keep the field readable as one clean instruction
 A field should feel specific, not crowded.
 
 Do not dump entire pools, era notes, or session notes into a field.
+
+### 10.5 Conditional Layer Rule
+
+Some layers are mutually exclusive.
+
+Example:
+
+```text
+INT lighting logic and EXT lighting logic are not both included by default.
+```
+
+Use controlled mixed logic only when the frame visibly contains both spaces.
+
+Selection beats accumulation.
 
 ---
 
@@ -836,13 +892,15 @@ Defines how light and air behave inside the shot.
 Owns:
 
 ```text
-light source
+active light source
+active location light logic
 shadow behavior
-indoor / outdoor atmosphere
-dust, haze, smoke, mist, humidity
+air behavior
+dust, haze, smoke, mist, humidity when physically appropriate
 diffusion
 dimness
 environmental brightness
+soft analog air particles
 ```
 
 Does not own:
@@ -853,24 +911,56 @@ color palette
 props
 material texture
 social-class material hierarchy
+VHS glitch
+tape damage
+film scratches
+heavy retro filter effects
 ```
 
 Layering pattern:
 
 ```text
-Global analog haze
-+ period lighting logic
-+ location light behavior
-+ tier / power atmosphere
-+ shot mood
+[Layer 1 - Global Channel Atmosphere]
++ [Layer 4 - Era / Period Lighting Logic, if relevant]
++ [Layer 5 - Tier / Role Atmosphere, if relevant]
++ [Layer 6 - Active Location Lighting Logic, required]
++ [Layer 8 - Shot Mood, if needed]
 ```
 
-Good:
+Layer 1 global contribution:
 
 ```text
-weak side light entering from a small opening, deep natural shadows, dim interior air
-heavy overcast exterior light with soft shadow edges and subdued environmental brightness
-dim interior side light and overcast exterior light unified by low-contrast documentary atmosphere
+subtle vintage analog tape aesthetic expressed as analog air particles, soft volumetric scattering, and reduced digital sharpness
+```
+
+Layer 4 and Layer 5 belong to the active `ERA_LOCK.md` or session overlay files.
+
+Layer 6 location selection:
+
+```text
+INT shot → indoor side-light logic
+EXT shot → outdoor diffused overcast logic
+INT/EXT threshold shot → controlled mixed-light logic only if both spaces are visible in one coherent frame
+```
+
+Do not combine indoor and outdoor lighting logic by default.
+
+Good INT pattern:
+
+```text
+directional side-light from a narrow opening, deep interior shadows, weak practical illumination at the focal workspace, floating dust softened by analog air particles
+```
+
+Good EXT pattern:
+
+```text
+diffused overcast daylight, soft shadow edges, subdued environmental brightness, outdoor haze softened by analog air particles
+```
+
+Good threshold pattern:
+
+```text
+dark interior foreground with controlled exterior spill at the doorway, both spaces unified by subtle analog air particles
 ```
 
 ### 11.9 `color_grading`
@@ -890,8 +980,7 @@ contrast
 black level
 shadow tone
 warmth / coldness
-archival fade
-tonal treatment
+archival tonal treatment
 ```
 
 Does not own:
@@ -903,23 +992,39 @@ camera behavior
 props
 material surfaces
 action
+fake retro color bleed
+damaged-tape color cast
+heavy sepia filter
+fake retro color cast
 ```
 
 Layering pattern:
 
 ```text
-Global desaturated archival base
-+ period color family
-+ optional tier/status accent
-+ shot tonal emphasis
+[Layer 1 - Global Fixed Base Grade]
++ [Layer 4 - Period Color / Material Family, if relevant]
++ [Layer 5 - Optional Tier / Status Accent, if relevant]
++ [Layer 8 - Shot Tonal Emphasis, if needed]
 ```
 
-Good:
+Layer 1 fixed global base grade:
 
 ```text
-desaturated muddy browns, cold slate-grays, deep charcoal, low contrast, faded archival tone
-muted earth palette, oxidized metal greens, dark timber blacks, restrained warm highlights
-monochrome carbon-black ink, dark sepia washes, aged parchment beige, low saturation
+deep desaturation, cold slate-greys, deep charcoal, low contrast
+```
+
+Layer 4 and Layer 5 belong to the active `ERA_LOCK.md` or session overlay files.
+
+Good base pattern:
+
+```text
+deep desaturation, cold slate-greys, deep charcoal shadows, low contrast, restrained archival tonal treatment
+```
+
+Good layered pattern:
+
+```text
+deep desaturation, cold slate-greys, deep charcoal shadows, low contrast, with only restrained period-specific material accents from the active era lock
 ```
 
 ### 11.10 `visual_constraints`
@@ -1921,7 +2026,7 @@ Do not use `visual_constraints` to explain the thesis or replace missing fields.
 ### 19.1 Realistic Documentary Visual Constraints
 
 ```text
-Written surfaces remain unreadable, reduced to blurred ink texture, partial marks, blank worn surfaces, or abstract weathered patterning. Clothing, grooming, objects, architecture, tools, furniture, and materials remain historically consistent with the active session, episode visual lock, or era lock. All surfaces remain matte, aged, worn, tactile, and non-glossy. The image keeps subtle old-video imperfections, softened optical resolution, vintage lens rendering, slight atmospheric softness, muted shadow detail, and low contrast without heavy artificial filter damage.
+Written surfaces remain unreadable, reduced to blurred ink texture, partial marks, blank worn surfaces, or abstract weathered patterning. Clothing, grooming, objects, architecture, tools, furniture, and materials remain historically consistent with the active session, episode visual lock, or era lock. All surfaces remain matte, aged, worn, tactile, and non-glossy. The image keeps subtle old-video imperfections, softened optical resolution, vintage lens rendering, slight atmospheric softness, muted shadow detail, and low contrast without heavy fake retro filter effects.
 ```
 
 ### 19.2 Rough Animation Visual Constraints
