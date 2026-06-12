@@ -37,6 +37,16 @@ a TTS file
 a prompt_raw schema file
 a replacement for CHANNEL_VEO_PROMPT_RULES_NEW.md
 a replacement for CHINA_SESSION_CONTROL.md
+a workflow timing file
+a min_visual_time authority
+a Veo duration control file
+```
+
+Timing boundary:
+
+```text
+This file does not define clip duration, min_visual_time, edit trimming behavior, or beat timing budgets.
+Those are controlled by CHANNEL_WORKFLOW_CONTROL_NEW.md and CHANNEL_VEO_PROMPT_RULES_NEW.md.
 ```
 
 Authority rule:
@@ -68,7 +78,7 @@ global visual signature
 field matrix composition model
 SINGLE_SHOT as base prompt unit
 derived variants
-Veo 3 short-clip discipline
+Veo 3 source-clip and shot-type density discipline
 ```
 
 This file provides external overlay data for those fields:
