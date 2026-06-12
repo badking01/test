@@ -481,22 +481,63 @@ After outputting beat_visual_flow, stop and wait for user approval before visual
 
 ## 6.3 PHASE A — Visual Grouping
 
-`visual_grouping` groups the beat into major visual ideas.
+`visual_grouping` groups the beat into narration-linked visual/edit containers.
+
+A Group is a planning container that connects:
+```text
+a narration chunk
+→ a local cluster of visual ideas
+→ a later edit boundary
+→ a default merge boundary for optimization
+```
 
 It must not mechanically follow SRT segments or sentence breaks.
 
+It must not introduce extra workflow layers such as:
+```text
+segment
+scene
+section
+sequence unit
+```
+
+The workflow stays:
+```text
+Beat → Group → Shot
+```
+
+A Group has meaning for visual planning, but it is not a production shot by itself.
+
+A Group:
+```text
+gives narration a visual/edit anchor
+contains the shots that support the same local narration / idea movement
+helps the user cut and assemble the beat later
+defines the default boundary for merging shots during optimization
+```
+
+A Group does not mean:
+```text
+all shots inside the Group must share one location
+all shots inside the Group must share one subject
+all shots inside the Group must share one action
+the Group itself can produce prompt_raw
+the Group replaces shot-level Visual idea / visual_goal / viewer_sees
+```
+
 It should answer:
 ```text
-Các ý hình ảnh lớn của beat là gì?
-Ý nào nên đứng riêng?
-Ý nào cùng chức năng thị giác?
+Cụm narration / ý chuyển động nào nên nằm chung một Group?
+Group này cần cụm visual shots nào để nâng đỡ ý đó?
+Ý nào nên đứng riêng thành Group khác?
 Ý nào quá dày và cần bung shot ở storyboard draft?
 ```
 
 Core rule:
 ```text
-Visual Grouping creates large visual idea groups.
+Visual Grouping creates narration-linked visual/edit containers.
 It does not finalize production shots yet.
+It does not create prompt_raw.
 ```
 
 ---
@@ -649,7 +690,7 @@ The user is the final decision maker.
 The assistant may suggest:
 ```text
 keep all storyboard units as separate SINGLE_SHOT
-remove optional visual ideas
+flag optional visual ideas for user review
 move dense visual ideas to another beat
 reduce repeated shots that prove the same visual function
 merge only visually compatible shots within the same Group
@@ -678,12 +719,12 @@ The edit creates rhythm.
 The prompt creates one coherent visual unit.
 ```
 
-Do not merge across different groups unless:
+Merge boundary rule:
 ```text
-the groups share the same visual function
-and the merge improves clarity
-and the group logic remains understandable
-and the resulting prompt remains Veo-feasible
+By default, merge only within the same Group.
+Do not merge shots across different Groups as silent optimization.
+A cross-Group merge changes the narration/edit boundary and must be presented as a restructuring proposal.
+Only perform a cross-Group merge if the user explicitly approves that restructuring.
 ```
 
 Do not output Optimized Shot Plan until the user approves an optimization direction.
@@ -1847,7 +1888,7 @@ Then the assistant must:
 stop expanding workflow
 return to storyboard-first projectbeat workflow
 preserve the active session thesis
-preserve the active episode visual lock / era lock rules
+preserve the active era lock rules
 avoid schema drift
 ask which room/file/beat is next
 ```
