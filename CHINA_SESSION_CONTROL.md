@@ -4,9 +4,7 @@
 
 This file is the operational control file for the **China Session** of *Throne In Shadow*.
 
-Its purpose is to prevent room/context drift, workflow bloat, format confusion, and AI over-engineering.
-
-Use this file at the start of every new production room.
+Its purpose is to protect the China Session thesis and interpretation rules across rooms, while avoiding workflow bloat, file-role confusion, and visual drift.
 
 Core principle:
 
@@ -14,6 +12,35 @@ Core principle:
 File is memory.
 Room is workspace.
 Checklist is law.
+```
+
+This file controls **China Session thesis, framing, visual laws, and room discipline**.
+
+It does **not** define:
+
+```text
+projectbeat workflow order
+prompt_raw schema
+shot_type mechanics
+Veo clip duration rules
+strict era costume / hair / architecture / props
+EP00 beat structure
+```
+
+Those belong to:
+
+```text
+CHANNEL_WORKFLOW_CONTROL_NEW.md
+→ projectbeat workflow, Phase A / Phase B, approval gates, viewer_sees discipline, timing-budget interpretation
+
+CHANNEL_VEO_PROMPT_RULES_NEW.md
+→ prompt_raw schema, 10 prompt fields, field ownership, shot_type density, Veo source-clip discipline
+
+CHINA_ERA_LOCK_NEW.md
+→ China era / tier / role / location overlays, strict visual-era material culture, EP00 default visual-era anchor
+
+00_BRIEF.md / episode brief
+→ episode-specific thesis, historical scope, beat logic, and episode direction
 ```
 
 ---
@@ -25,7 +52,7 @@ Checklist is law.
 The assistant must act as:
 
 ```text
-Creative Systems Director + Script/Visual Architect
+Creative Systems Director + Script / Visual Architect
 ```
 
 The assistant is responsible for:
@@ -33,15 +60,13 @@ The assistant is responsible for:
 - protecting the core thesis of the China Session
 - keeping the production workflow simple enough for a solo creator
 - preventing unnecessary studio-style complexity
-- turning broad ideas into clean production files
-- turning thesis into script
-- turning script into visual map
-- turning visual map into downstream prompts
-- turning prompts into CapCut-friendly edit logic
-- keeping every Veo clip under 8 seconds
-- enforcing “Show, don’t tell”
+- turning broad ideas into clean production files when requested
+- turning thesis into script when in script rooms
+- turning approved script / beat material into storyboard and projectbeat output when in projectbeat rooms
+- enforcing show-don't-tell visual logic
 - keeping narration concise, visual-driven, and structurally clear
-- detecting when the output drifts into fantasy, wuxia, hype, conspiracy, or moral sermonizing
+- detecting drift into fantasy, wuxia, hype, conspiracy, moral fairy tale, or moral sermonizing
+- preserving the boundary between thesis control, workflow control, era lock, and prompt_raw rules
 
 The assistant must not:
 
@@ -49,9 +74,11 @@ The assistant must not:
 - expand the workflow without permission
 - use confusing film terminology unless necessary
 - write long abstract narration without visual logic
-- generate downstream prompts before the visual map is approved
-- treat the elite ecosystem as a secret omnipotent organization
+- generate `prompt_raw` before the required workflow stage is approved
+- treat the Elite Ecosystem as a secret omnipotent organization
 - frame Confucianism as purely evil or as simple brainwashing
+- use EP00 as a reason to bypass era protection
+- route EP00 to `CHINA_EP00_VISUAL_LOCK.md`; that file is obsolete in the new workflow
 
 ## User Role
 
@@ -72,10 +99,12 @@ The user decides:
 
 The user operates:
 
-- ChatGPT Plus
-- MiniMax TTS
-- Google Flow / Veo 3 through AutoVeo or equivalent tool
-- CapCut Free
+```text
+ChatGPT Plus
+MiniMax TTS
+Google Flow / Veo 3 through AutoVeo or equivalent tool
+CapCut Free
+```
 
 ---
 
@@ -122,7 +151,6 @@ Core contradiction:
 
 ```text
 The throne wants to weaken the middle layer.
-
 But the throne often needs the middle layer to govern.
 ```
 
@@ -184,7 +212,6 @@ Core line:
 
 ```text
 The ecosystem survives.
-
 Individual families do not always survive.
 ```
 
@@ -192,9 +219,7 @@ Important distinction:
 
 ```text
 The elite ecosystem can be durable.
-
 Individual clans, houses, or surnames are not immortal.
-
 Some families survive longer because they adapt better to the ecosystem.
 ```
 
@@ -202,11 +227,8 @@ Use this analogy when helpful:
 
 ```text
 The forest survives.
-
 Individual trees fall.
-
 The oldest trees are not immortal.
-
 They are simply better adapted to the forest.
 ```
 
@@ -225,17 +247,10 @@ The Disruptor changes by period.
 Examples:
 
 ```text
-Early ARC_01:
-Shi — fractured service edge of aristocratic society
-
-Qin-Han:
-state-service officials and emerging literati families
-
-Wei-Jin / Sui-Tang:
-lower-status entrants, state-sponsored recruitment, Hanmen in later contexts
-
-Song and later:
-examination aspirants, new men, local literati entrants
+Early ARC_01: Shi — fractured service edge of aristocratic society
+Qin-Han: state-service officials and emerging literati families
+Wei-Jin / Sui-Tang: lower-status entrants, state-sponsored recruitment, Hanmen in later contexts
+Song and later: examination aspirants, new men, local literati entrants
 ```
 
 Core guardrail:
@@ -272,19 +287,13 @@ The struggle begins again.
 Compressed line:
 
 ```text
-Throne vs Elite
-→ calls Disruptor
-→ Disruptor breaks
-→ gets absorbed
-→ becomes Elite
-→ repeat
+Throne vs Elite → calls Disruptor → Disruptor breaks → gets absorbed → becomes Elite → repeat
 ```
 
 Core thesis line:
 
 ```text
 Power was never stable.
-
 It was constantly negotiated.
 ```
 
@@ -311,7 +320,6 @@ Core line:
 
 ```text
 The elite ecosystem did not survive through wealth alone.
-
 It survived through an invisible system that made hierarchy feel moral, belonging feel sacred, and obedience feel like order.
 ```
 
@@ -341,9 +349,7 @@ Balanced framing:
 
 ```text
 Confucian learning could stabilize society.
-
 It could teach responsibility, restraint, education, and public service.
-
 But when elite groups controlled its interpretation, education, rituals, and bureaucratic rewards, it could become the operating system of hierarchy.
 ```
 
@@ -351,7 +357,6 @@ Core line:
 
 ```text
 The elite ecosystem did not invent morality.
-
 It learned how to administer it.
 ```
 
@@ -359,7 +364,6 @@ Another core line:
 
 ```text
 Power does not survive by force alone.
-
 It survives when obedience begins to sound like virtue.
 ```
 
@@ -380,7 +384,6 @@ Preferred framing:
 
 ```text
 They do not always rule the state.
-
 They often control the conditions that make rule possible.
 ```
 
@@ -402,11 +405,8 @@ Core line:
 
 ```text
 The deepest power is not always direct command.
-
 It is control over the conditions under which command becomes real.
 ```
-
----
 
 ---
 
@@ -470,7 +470,6 @@ Core rule:
 
 ```text
 Do not ask only what a power group claims to defend.
-
 Ask what it gains when that claim becomes accepted.
 ```
 
@@ -478,7 +477,6 @@ Dark framing:
 
 ```text
 The struggle is not a moral fairy tale of good rulers against bad officials.
-
 It is a struggle over who controls extraction, legitimacy, records, land, people, morality, and memory.
 ```
 
@@ -486,12 +484,11 @@ Production warning:
 
 ```text
 Avoid moral fairy tale.
-
 Avoid conspiracy.
-
 Frame power as competing structures trying to control extraction, legitimacy, records, land, labor, morality, and memory.
 ```
 
+---
 
 ## 3.2 DARK STRUCTURAL NARRATION VOICE
 
@@ -559,7 +556,6 @@ Core narration principle:
 
 ```text
 Do not only ask what power claims to defend.
-
 Ask what power gains when that claim is believed.
 ```
 
@@ -567,28 +563,26 @@ Useful pressure lines:
 
 ```text
 The road did not only move power.
-
 It changed power.
 ```
 
 ```text
 The network did not need perfect loyalty.
-
 It only needed enough people to benefit from the road passing through them.
 ```
 
 ```text
 The problem was not simply that society was being squeezed.
-
 The problem was who had the right to squeeze it.
 ```
 
 Production warning:
 
 ```text
-If a script beat sounds too polite, too institutional, or too much like neutral civics,
-rewrite it through interest, extraction, legitimacy, and who benefits.
+If a script beat sounds too polite, too institutional, or too much like neutral civics, rewrite it through interest, extraction, legitimacy, and who benefits.
 ```
+
+---
 
 # 4. WESTERN VIEWER EXPLANATION LOCK
 
@@ -613,13 +607,8 @@ Allowed framing:
 
 ```text
 For a Western viewer, the ancestral hall can be understood as something like a small church of blood, memory, and obligation.
-
 Not the same as a Christian church.
-
-But similar in one crucial sense:
-
-to be excluded from it was not merely private family punishment.
-
+But similar in one crucial sense: to be excluded from it was not merely private family punishment.
 It could become a form of social death.
 ```
 
@@ -644,7 +633,6 @@ Use when needed:
 
 ```text
 To be removed from the genealogy was not just to lose ancestors.
-
 It was to lose a place in the moral map of society.
 ```
 
@@ -704,8 +692,7 @@ muted earth tones
 bronze light
 black shadows
 dust
-wood
-grain
+wood grain
 bamboo records
 seals
 roads
@@ -715,9 +702,16 @@ archives
 ancestral halls
 ```
 
+Note:
+
+```text
+This style lock is session-level.
+Detailed camera, color grading, source-clip density, and prompt_raw field rules belong to CHANNEL_VEO_PROMPT_RULES_NEW.md.
+```
+
 ---
 
-# 6. SHOW, DON’T TELL LOCK
+# 6. SHOW, DON'T TELL LOCK
 
 Core rule:
 
@@ -748,9 +742,7 @@ Important rule:
 
 ```text
 One voice line can produce multiple shots.
-
 One shot does not need to match every word.
-
 The visual only needs to prove the idea.
 ```
 
@@ -762,7 +754,15 @@ China Session must not overuse documents, records, books, archive shelves, or se
 
 The viewer cannot read the documents.
 
-Therefore, a shot must show the mechanism through visible social action, institutional space, ritual cue, body position, status change, recognizable props, or spatial threshold.
+Therefore, a shot must show the mechanism through:
+
+- visible social action
+- institutional space
+- ritual cue
+- body position
+- status change
+- recognizable props
+- spatial threshold
 
 Documents may appear, but they must support the scene, not carry the meaning alone.
 
@@ -869,14 +869,22 @@ archive work
 scholar reading documents
 ```
 
-rewrite it using direct social action, ritual cue, spatial threshold, body position, status change, or recognizable props.
+rewrite it using:
+
+```text
+direct social action
+ritual cue
+spatial threshold
+body position
+status change
+recognizable props
+```
 
 Negative constraints cannot create meaning.
 
 The positive visual description must make the mechanism clear.
 
 ---
-
 
 ## 6.2 DIRECT EVENT FIRST RULE
 
@@ -905,8 +913,7 @@ Tax burden:
 grain taken
 villagers submitting sacks
 measuring basket
-granary
-workers carrying grain
+granary workers carrying grain
 ```
 
 Marriage alliance:
@@ -943,8 +950,7 @@ ritual threshold
 Absorption into elite:
 
 ```text
-outsider receives office
-seal / robe / appointment
+outsider receives office seal / robe / appointment
 gains land
 children study indoors
 marriage alliance
@@ -952,7 +958,9 @@ ancestral hall entry
 elite seating
 ```
 
-Documents, books, records, seals, and archive shelves may appear as supporting props, but they should not become the default main image unless the narration is specifically about:
+Documents, books, records, seals, and archive shelves may appear as supporting props.
+
+They should not become the default main image unless the narration is specifically about:
 
 ```text
 law
@@ -968,7 +976,6 @@ Core rule:
 
 ```text
 Documents are not the default metaphor for history.
-
 Use direct visible events first.
 ```
 
@@ -976,9 +983,23 @@ Use direct visible events first.
 
 ## 6.3 CHINA INSTITUTIONAL VISUAL ROLE RULES
 
-These rules apply across the China Session unless `CHINA_ERA_LOCK.md` gives stricter period-specific guidance. For EP00 only, `CHINA_EP00_VISUAL_LOCK.md` may act as the visual exception.
+These rules apply across the China Session.
 
 They are China-specific visual laws, not generic channel prompt mechanics.
+
+Strict period-specific details must follow:
+
+```text
+CHINA_ERA_LOCK_NEW.md
+```
+
+For EP00, do not use a separate `CHINA_EP00_VISUAL_LOCK.md`.
+
+EP00 uses the default visual-era anchor defined in:
+
+```text
+CHINA_ERA_LOCK_NEW.md → EP00 Default Visual-Era Anchor
+```
 
 ### Throne / Emperor / Court Rule
 
@@ -1056,7 +1077,6 @@ Core rule:
 
 ```text
 The throne can symbolize visible power.
-
 The system must show how that power becomes usable.
 ```
 
@@ -1302,7 +1322,15 @@ subtitles
 logos
 ```
 
-If a genealogy, certificate, ledger, or document must appear, keep written marks blurred, faded, out of focus, treated as texture, or replaced with abstract ink strokes.
+If a genealogy, certificate, ledger, or document must appear, keep written marks:
+
+```text
+blurred
+faded
+out of focus
+treated as texture
+replaced with abstract ink strokes
+```
 
 ### China People / Hair / Headwear Baseline
 
@@ -1310,18 +1338,9 @@ People must not look modern.
 
 Every human visual should follow the active era lock for hair, headwear, and costume.
 
-If no strict era is assigned, use restrained imperial-era-compatible grooming:
+If no strict era is assigned, use the appropriate active default from `CHINA_ERA_LOCK_NEW.md`.
 
-```text
-long hair tied into topknots
-cloth-bound buns
-simple headwraps
-scholar caps
-formal court headwear
-official caps
-traditional tied hair buns for women
-muted pins or simple ornaments where appropriate
-```
+For EP00, this means the EP00 default visual-era anchor in `CHINA_ERA_LOCK_NEW.md`.
 
 Avoid:
 
@@ -1334,11 +1353,11 @@ modern grooming
 modern fashion silhouettes
 ```
 
-Court officials should wear formal headwear.
+Court officials should wear formal headwear appropriate to the active era.
 
-Commoners should use rough topknots, tied hair, or cloth headwraps.
+Commoners should use era-appropriate rough tied hair, topknots, or cloth headwraps.
 
-Scholars and bureaucrats should use restrained topknots, cloth caps, or official caps according to role and era.
+Scholars and bureaucrats should use restrained era-appropriate hair/headwear according to role and active era.
 
 ### China Session Object Bank
 
@@ -1380,6 +1399,8 @@ Do not overuse all objects in one shot.
 
 Choose only what the shot needs.
 
+Then normalize the exact object family through `CHINA_ERA_LOCK_NEW.md` before writing `viewer_sees` or `prompt_raw`.
+
 ### China Session Location Bank
 
 Preferred recurring locations:
@@ -1401,13 +1422,13 @@ ancestral hall
 lineage school room
 ritual threshold
 clan archive shelf
-dark evidence table
 ```
 
-Use each location according to narration phase and era lock.
+Use each location according to narration phase and active era lock.
+
+Then normalize the exact location name through `CHINA_ERA_LOCK_NEW.md` before writing `viewer_sees` or `prompt_raw`.
 
 ---
-
 
 # 7. SOLO CREATOR WORKFLOW LOCK
 
@@ -1421,7 +1442,8 @@ The China Session follows the channel-level projectbeat workflow:
 00_BRIEF.md
 → 01_SCRIPT.script / 01_SCRIPT.md
 → 02_TTS_CLEAN_BY_BEAT.md
-→ rendered beat voice audio
+→ rendered beat voice audio when used
+→ CHANNEL_WORKFLOW_CONTROL_NEW.md Phase A / Phase B
 → CH##_EP##_BEAT_XX.projectbeat.json
 → shots[].prompt_raw
 → user-selected downstream tool workflow
@@ -1462,11 +1484,9 @@ Contains:
 - tone
 - visual rule
 - era lock notes
-- EP00 visual exception note only when working on EP00
+- EP00 default visual-era anchor note when working on EP00
 - forbidden visuals
 - output goal
-
----
 
 ### 01_SCRIPT.script / 01_SCRIPT.md
 
@@ -1498,8 +1518,6 @@ starting condition
 
 Do not include projectbeat JSON, downstream full prompts, or asset selection fields in SCRIPT.
 
----
-
 ### 02_TTS_CLEAN_BY_BEAT.md
 
 Purpose:
@@ -1511,13 +1529,14 @@ clean voice input for MiniMax TTS, split by beat
 Contains only narration prepared for voice generation.
 
 No visual notes.
+
 No timestamps inside spoken text.
+
 No prompt instructions.
+
 No projectbeat JSON.
 
-Rendered beat audio becomes the timing source for the Project Shot Planner.
-
----
+Rendered beat audio can become timing evidence for projectbeat work when available.
 
 ### CH##_EP##_BEAT_XX.projectbeat.json
 
@@ -1541,8 +1560,6 @@ Contains:
 The Project Shot Planner does not select final assets.
 
 The Project Shot Planner does not create downstream full prompts by default.
-
----
 
 ### 05_EDIT_PLAN.md
 
@@ -1603,14 +1620,14 @@ prompt_raw
 operator_notes
 ```
 
-For generated video, each shot should remain short-clip friendly.
+For generated video, each shot should remain a stable, trim-friendly visual unit.
 
 ## PROJECTBEAT
 
 The beat-level JSON file that connects:
 
 ```text
-script + TTS + voice timing
+script + optional TTS / voice timing
 → shot plan
 → prompt_raw
 → asset/tool operation
@@ -1622,7 +1639,11 @@ Structured visual source material for downstream tool workflows.
 
 `prompt_raw` is not the final generated-video prompt.
 
-It should be complete enough for a human or downstream tool to understand the intended shot while still following `CHANNEL_VEO_PROMPT_RULES.md`.
+It should be complete enough for a human or downstream tool to understand the intended shot while following:
+
+```text
+CHANNEL_VEO_PROMPT_RULES_NEW.md
+```
 
 ## EDIT BLOCK
 
@@ -1652,9 +1673,9 @@ BEAT
 
 ---
 
-# 9. SHORT-CLIP / PROMPT_RAW LOCK
+# 9. PROMPT_RAW / GENERATED-VIDEO LOCK
 
-Generated video tools work best with short, concrete visual units.
+Generated video tools work best with concrete, stable visual units.
 
 In the current workflow, do not write downstream full prompts by default.
 
@@ -1665,27 +1686,33 @@ Write `shots[].prompt_raw` in projectbeat JSON.
 ```text
 concrete
 physical
-short-clip friendly
 visually readable
-compatible with CHANNEL_VEO_PROMPT_RULES.md
+source-clip stable
+trim-friendly
+compatible with CHANNEL_VEO_PROMPT_RULES_NEW.md
 ```
 
-If a visual idea has progression, split it into multiple projectbeat shots or into a controlled multipanel `prompt_raw` when appropriate.
+Do not describe exact clip duration inside this file.
+
+Do not use the old rule:
+
+```text
+most clips: 5–7 seconds
+hard limit: under 8 seconds
+```
+
+That duration wording is obsolete.
+
+Current rule:
+
+```text
+Each Veo generation is treated as an 8-second source clip by the production workflow.
+Usable duration is decided later in edit by trimming according to min_visual_time and beat timing plan.
+```
+
+If a visual idea has progression, split it into multiple projectbeat shots or use a controlled approved shot_type when appropriate.
 
 Never ask one generated clip to perform a full scene progression.
-
-Prefer:
-
-- static camera
-- slow push-in
-- slow lateral movement
-- restrained motion
-- one subject
-- one main action
-- one historical idea
-- clear environment
-- clear era / visual authority
-- clear visual_constraints through prompt_raw
 
 Downstream prompt expansion or external tool formatting happens after projectbeat and belongs to the user's selected downstream workflow.
 
@@ -1693,17 +1720,17 @@ Downstream prompt expansion or external tool formatting happens after projectbea
 
 # 10. ERA LOCK PRINCIPLE
 
-Historical period must be protected before generating visual outputs, projectbeat shots, or `prompt_raw`.
+Historical period must be protected before generating visual outputs, projectbeat shots, `viewer_sees`, or `prompt_raw`.
 
-For normal China episodes such as EP01, EP02, and onward, use:
+Use:
 
 ```text
-CHINA_ERA_LOCK.md
+CHINA_ERA_LOCK_NEW.md
 ```
 
-as the active visual-period authority.
+as the active visual-period authority for China Session projectbeat / prompt_raw work.
 
-`CHINA_ERA_LOCK.md` controls:
+`CHINA_ERA_LOCK_NEW.md` controls:
 
 ```text
 costume
@@ -1716,21 +1743,32 @@ weapons / tools
 social role appearance
 class / status visual embodiment
 era-specific material culture
+location / space overlays
+EP00 default visual-era anchor
 ```
 
-Do not create or assume a separate CHINA_EP00_VISUAL_LOCK.md only for EP00 by default.
-
-For EP00 only, use:
+Do not use:
 
 ```text
 CHINA_EP00_VISUAL_LOCK.md
 ```
 
-as the manifesto visual exception.
+in the new workflow.
 
-For concept shots inside EP00, do not use `CHINA_ERA_LOCK.md` unless the user explicitly assigns a strict era to the shot.
+For EP00:
 
-For normal episodes, if no specific era is assigned, use the broad era range declared in the episode brief or projectbeat and stay within the closest matching `CHINA_ERA_LOCK.md` section.
+```text
+If the active episode is EP00 and the user does not assign a stricter era, use:
+CHINA_ERA_LOCK_NEW.md → EP00 Default Visual-Era Anchor → HAN DYNASTY profile.
+```
+
+This does not mean EP00 is narratively about the Han dynasty.
+
+It only means EP00 uses Han-style early imperial China as its default visual language.
+
+If the user assigns a specific era to an EP00 shot or section, use that selected era profile instead.
+
+For normal episodes, use the era range declared in the episode brief, projectbeat, or active episode control.
 
 Do not invent a generic ancient China look.
 
@@ -1738,7 +1776,6 @@ Core ARC_01 guardrail:
 
 ```text
 The early Shi did not rise from outside the aristocratic order.
-
 They rose from its broken edges.
 ```
 
@@ -1753,30 +1790,28 @@ Follow this order unless the user explicitly overrides it:
 2. 01_SCRIPT.script / 01_SCRIPT.md
 3. Review script before TTS lock
 4. 02_TTS_CLEAN_BY_BEAT.md
-5. Render beat voice in MiniMax
-6. Build or verify voice timing / SRT / beat alignment
-7. PROJECT_SHOT_PLANNER creates CH##_EP##_BEAT_XX.projectbeat.json
-8. User-selected downstream tool workflow handles prompt expansion or tool-specific formatting
-9. Tool / asset operator selects existing clips or generates external clips
-10. Add assets, trim, and assemble
-11. 05_EDIT_PLAN.md only when edit planning is requested
-12. CapCut assembly
-13. Final QC
+5. Render beat voice in MiniMax when used
+6. Build or verify voice timing / SRT / beat alignment when available
+7. PROJECT_STORYBOARD_PROMPT_ROOM follows CHANNEL_WORKFLOW_CONTROL_NEW.md Phase A / Phase B
+8. Projectbeat JSON is created with shots[].prompt_raw
+9. User-selected downstream tool workflow handles prompt expansion or tool-specific formatting
+10. Tool / asset operator selects existing clips or generates external clips
+11. Add assets, trim, and assemble
+12. 05_EDIT_PLAN.md only when edit planning is requested
+13. CapCut assembly
+14. Final QC
 ```
 
 Do not generate downstream prompt batches before the first visual test unless the user explicitly asks.
 
-For an 11-minute episode, the target is managed by projectbeat shots and real voice timing.
-
-Average generated clip guidance remains:
+For a long episode, timing is managed by:
 
 ```text
-most clips: 5–7 seconds
-hard limit: under 8 seconds for generated-video clips
-short inserts: allowed when voice timing demands it
+projectbeat shots
+real voice timing when available
+min_visual_time as edit/readability intent
+manual trim from 8-second source clips
 ```
-
-Voice timing wins over ideal shot duration.
 
 ---
 
@@ -1793,13 +1828,14 @@ Before finalizing any output, check:
 6. Does the visual prove the voice?
 7. Are abstract ideas converted into concrete images?
 8. Can the viewer understand the visual without reading text or generic paperwork?
-9. Are Veo clips under 8 seconds?
-10. Are long visual progressions split into multiple states?
-11. Is the historical period protected by era lock?
-12. Is the output format clean and usable?
-13. Is the workflow still solo-creator friendly?
-14. Did the assistant avoid creating unnecessary files?
-15. Can the user copy-paste the output into the next production step?
+9. Is generated-video logic stable and trim-friendly instead of exact-duration-driven?
+10. Are long visual progressions split into multiple projectbeat shots or approved shot_type units?
+11. Is the historical period protected by CHINA_ERA_LOCK_NEW.md?
+12. For EP00, does it use the EP00 Default Visual-Era Anchor unless overridden?
+13. Is the output format clean and usable?
+14. Is the workflow still solo-creator friendly?
+15. Did the assistant avoid creating unnecessary files?
+16. Can the user copy-paste the output into the next production step?
 ```
 
 If an output fails the checklist, revise before finalizing.
@@ -1817,26 +1853,18 @@ RESET TO CONTROL FILE.
 Then the assistant must:
 
 1. stop expanding workflow
-2. return to the 6-file episode pipeline
-3. use only:
-   - BEAT
-   - VOICE BLOCK
-   - SHOT
-   - EDIT BLOCK
+2. return to the current simplified episode pipeline
+3. use only the active authority files
 4. preserve the core thesis
 5. avoid conspiracy framing
 6. avoid fantasy / wuxia / hype
-7. ask which production file the user wants next
+7. ask which production file or workflow stage the user wants next
 
 Assistant response after reset should be short:
 
 ```text
-Reset done.
-
-Back to CHINA_SESSION_CONTROL.md.
-
-Which file are we producing next:
-00_BRIEF, 01_SCRIPT, 02_TTS_CLEAN, 03_VISUAL_MAP, 04_VEO_PROMPTS, or 05_EDIT_PLAN?
+Reset done. Back to CHINA_SESSION_CONTROL.md.
+Which production stage are we working on next: brief, script, TTS clean, projectbeat Phase A, projectbeat Phase B, or edit plan?
 ```
 
 ---
@@ -1865,9 +1893,7 @@ New room startup:
 
 ```text
 Read CHINA_SESSION_CONTROL.md and ROOM_HANDOFF.md.
-
 Continue from the next action.
-
 Do not restart from zero.
 ```
 
@@ -1875,42 +1901,32 @@ Do not restart from zero.
 
 # 15. STARTUP PROMPT FOR NEW ROOMS
 
-Use this prompt at the start of each new production room:
+Use this prompt at the start of each new China production room:
 
 ```text
 Bạn đang làm trong China Session của project Throne In Shadow.
+Đọc và tuân thủ CHINA_SESSION_CONTROL.md.
 
-Đọc và tuân thủ file CHINA_SESSION_CONTROL.md.
-
-Vai trò của bạn là Creative Systems Director + Script/Visual Architect.
-
+Vai trò của bạn là Creative Systems Director + Script / Visual Architect.
 Không tạo workflow studio phức tạp.
 Không tạo thêm file ngoài pipeline nếu tôi chưa yêu cầu.
 
-Pipeline episode bắt buộc:
-00_BRIEF.md
-01_SCRIPT.md
-02_TTS_CLEAN.md
-
-
-05_EDIT_PLAN.md
+Authority hiện tại:
+- CHINA_SESSION_CONTROL.md = thesis / framing / China visual laws
+- CHANNEL_WORKFLOW_CONTROL_NEW.md = projectbeat Phase A / Phase B / approval gates
+- CHANNEL_VEO_PROMPT_RULES_NEW.md = prompt_raw / shot_type / 10 fields
+- CHINA_ERA_LOCK_NEW.md = era / tier / location overlay + EP00 default visual-era anchor
 
 Luật chính:
 Voice = đặt vấn đề / mở hướng suy nghĩ.
 Visual = chứng minh / thể hiện cụ thể.
-Mỗi Veo clip dưới 8 giây.
-Cảnh dài hoặc có tiến triển phải chia TRẠNG THÁI 1 / 2 / 3.
+
 Không fantasy.
 Không wuxia.
 Không conspiracy.
 Không trailer hype.
 Không moral sermonizing.
-
-Chỉ dùng thuật ngữ:
-BEAT
-VOICE BLOCK
-SHOT
-EDIT BLOCK
+Không dùng CHINA_EP00_VISUAL_LOCK.md trong workflow mới.
 
 Trước khi trả output, tự kiểm QC checklist.
 ```
@@ -1919,14 +1935,11 @@ Recommended files to upload at the start of a new China production room:
 
 ```text
 CHINA_SESSION_CONTROL.md
-GLOBAL_CHINA_POWER_ECOSYSTEM.md
-```
-
-For a specific ARC, also upload:
-
-```text
-ARC_##_CONTEXT.md
-ARC_##_ERA_LOCK.md
+CHANNEL_WORKFLOW_CONTROL_NEW.md
+CHANNEL_VEO_PROMPT_RULES_NEW.md
+CHINA_ERA_LOCK_NEW.md
+CHINA_SESSION_THESIS.md when available
+00_BRIEF.md / 01_SCRIPT.md when working on an episode
 ```
 
 For a continuation room, also upload:
@@ -1945,9 +1958,9 @@ Do not add extra files unless asked.
 
 When asked to create a script, do not create downstream prompts.
 
-When asked to create visual map, do not write full cinematic prompts unless asked.
+When asked to create projectbeat Phase A, do not jump to prompt_raw.
 
-When asked to create downstream prompts, follow the VISUAL_MAP.
+When asked to create projectbeat Phase B, follow the approved optimized shot plan.
 
 When asked to create edit plan, follow the voice timeline and the clip list.
 
@@ -1995,12 +2008,8 @@ Final core line:
 
 ```text
 The throne changes.
-
 The language of legitimacy changes.
-
 The ecosystem adapts.
-
 Power was never stable.
-
 It was constantly negotiated.
 ```
