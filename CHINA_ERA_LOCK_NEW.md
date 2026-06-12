@@ -358,6 +358,57 @@ institutional
 non-glossy
 ```
 
+### 4.6 EP00 Default Visual-Era Anchor
+
+When the active episode is `EP00` and the user does not assign a stricter era, use the `HAN DYNASTY` era profile as the default visual-era anchor.
+
+This does **not** mean EP00 is narratively about the Han dynasty.
+It only means EP00 uses **Han-style early imperial China** as its default visual language.
+
+EP00 inherits the Han profile's:
+
+```text
+era base overlay
+tier / role overlays
+location / space overlays
+material culture
+props and record-material logic
+lighting and color accents
+anti-era-mixing guardrails
+```
+
+Do not copy Han data into a separate EP00 profile.
+Reference the `HAN DYNASTY` profile to avoid duplicate or conflicting rules.
+
+EP00 default visual anchor controls only:
+
+```text
+visual-era family
+costume / hair / grooming logic
+architecture / furniture family
+props / record materials / object family
+location / space visual plausibility
+anti-era-mixing protection
+```
+
+It does not define:
+
+```text
+EP00 thesis
+brief / script structure
+beat phase logic
+storyboard workflow
+viewer_sees field rules
+prompt_raw schema
+clip duration
+min_visual_time
+edit trimming behavior
+```
+
+Avoid mixing Tang, Song, Ming, Qing, or generic wuxia / palace-drama markers into EP00 shots unless the user explicitly approves a comparison.
+
+If the user assigns a specific era to an EP00 shot, section, or test, use that selected era profile instead of the EP00 default Han-style anchor.
+
 ---
 
 ## 5. Era Profile Structure
