@@ -1,4 +1,4 @@
-# CHANNEL_WORKFLOW_CONTROL.md
+# CHANNEL_WORKFLOW_CONTROL_NEW.md
 
 # STATUS
 ACTIVE — CHANNEL LEVEL — STORYBOARD-PROMPT PROJECTBEAT WORKFLOW
@@ -166,7 +166,7 @@ The assistant does not automatically continue into TTS rendering, downstream too
 Use this authority order when multiple files are active.
 
 ```text
-1. CHANNEL_WORKFLOW_CONTROL.md
+1. CHANNEL_WORKFLOW_CONTROL_NEW.md
    = controls workflow order, room responsibility, output boundary, storyboard-to-projectbeat process
 
 2. CHANNEL_VEO_PROMPT_RULES_NEW.md
@@ -781,9 +781,13 @@ Group
 
 This order preserves the storyboard decision and prevents prompt-first drift.
 
-`Group`, `Shot`, and `Min visual time` are planning/edit metadata.
+`Group`, `Shot`, `Layout`, and `Min visual time` preserve the approved planning/edit structure.
 
-They do not drive prompt_raw content.
+They do not create prompt_raw visual content except that `Layout` maps to the allowed production `shot_type`.
+
+`Group` groups narration/visual ideas.
+`Shot` identifies the production row.
+`Min visual time` preserves edit/readability timing intent only.
 
 `viewer_sees` must be refined before prompt_raw, but do not output internal anchor scratch fields unless debug mode is explicitly requested.
 
@@ -1773,7 +1777,7 @@ Internal normalization is a reasoning step, not a required saved artifact.
 For China-session work, apply the workflow like this:
 
 ```text
-CHANNEL_WORKFLOW_CONTROL.md
+CHANNEL_WORKFLOW_CONTROL_NEW.md
 → defines the workflow path and room responsibility
 
 CHANNEL_VEO_PROMPT_RULES_NEW.md
