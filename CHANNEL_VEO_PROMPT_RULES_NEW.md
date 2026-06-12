@@ -10,7 +10,7 @@ It controls:
 prompt_raw structure
 base SINGLE_SHOT field system
 derived prompt variants
-Veo 3 short-clip discipline
+Veo 3 source-clip and shot-type density discipline
 field ownership and field boundaries
 global visual signature
 field matrix composition
@@ -36,18 +36,20 @@ Those belong in:
 SESSION_THESIS.md
 SESSION_CONTROL.md
 EP_VISUAL_LOCK.md
-ERA_LOCK.md
-CHANNEL_WORKFLOW_CONTROL.md
+CHINA_ERA_LOCK_NEW.md
+CHANNEL_WORKFLOW_CONTROL_NEW.md
+CHANNEL_WORKFLOW_CONTROL.md only if the older workflow file is explicitly active
 ```
 
 Authority rule:
 
 ```text
-CHANNEL_VEO_PROMPT_RULES.md wins only for prompt_raw structure and Veo 3 prompt technique.
+CHANNEL_VEO_PROMPT_RULES_NEW.md wins only for prompt_raw structure and Veo 3 prompt technique.
 SESSION_CONTROL.md wins for civilization/session-specific meaning and guardrails.
 EP_VISUAL_LOCK.md wins for episode-specific visual identity.
-ERA_LOCK.md wins for period accuracy.
-CHANNEL_WORKFLOW_CONTROL.md wins for production workflow and human-readable planning fields.
+CHINA_ERA_LOCK_NEW.md wins for China period accuracy and era/tier/location overlay.
+ERA_LOCK.md wins only when a non-China session provides its own active era lock.
+CHANNEL_WORKFLOW_CONTROL_NEW.md wins for production workflow, Phase A/Phase B order, approval gates, timing-budget interpretation, and human-readable planning fields.
 ```
 
 Core boundary:
@@ -124,7 +126,7 @@ A valid `prompt_raw` must be clear enough that:
 ```text
 a human can understand the intended shot
 a downstream tool can convert it into a full Veo 3 prompt
-Veo can generate a stable short clip
+Veo can generate a stable 8-second source clip
 ```
 
 ---
@@ -159,36 +161,51 @@ Use `SINGLE_SHOT` whenever the shot does not require a visible transition or sim
 
 ---
 
-## 5. Veo 3 Short-Clip Discipline
+## 5. Veo 3 Source Clip & Shot-Type Density Discipline
 
-A generated clip should target:
+`prompt_raw` does **not** control exact clip duration.
 
-```text
-5–7 seconds
-```
+The production workflow treats each Veo generation as an **8-second source clip**.
+Usable duration is decided later in editing by trimming the generated source clip according to the shot's `min_visual_time` and beat timing plan.
 
-Hard compatibility limit:
+Therefore, `prompt_raw` must focus on **visual stability**, **shot-type-safe density**, and **trim-friendly readability**, not exact duration.
 
-```text
-under 8 seconds
-```
+Do not write `prompt_raw` as if it can force exact 3s, 4s, 5s, 6s, or 7s output.
 
-Core validation rule:
+Core rule:
 
 ```text
-one prompt_raw = one short visual unit
+one prompt_raw = one stable visual unit for an 8-second source clip
+edit decides the usable trimmed duration
 ```
+
+### 5.1 Universal density rule
+
+Every `prompt_raw` must describe:
+
+```text
+one clear visual purpose
+one dominant mechanism
+one readable visual state
+one production-friendly composition
+no hidden montage
+no multi-location journey
+no packed procedural chain
+```
+
+Density is evaluated by `shot_type`.
 
 Do not treat one prompt like a full scene sequence.
 
 Avoid:
 
 ```text
-multiple location changes
+multiple unrelated location changes
 multiple temporal turns
 several sequential actions
 complex camera travel through multiple spaces
 symbolic morphing chains
+montage disguised as one prompt
 ```
 
 Stability priority:
@@ -196,13 +213,167 @@ Stability priority:
 ```text
 one stable visual idea
 one controlled camera behavior
-one physical action or stillness
+one physical action or held stillness
 one resolved readable image
 ```
 
 When in doubt, choose stability over ambition.
 
----
+### 5.2 SINGLE_SHOT density rule
+
+A `SINGLE_SHOT` must describe **one coherent physical scene**.
+
+It should contain:
+
+```text
+one coherent location or threshold
+one main subject or subject group
+one primary visible action or held visual state
+one clear spatial hierarchy
+one visible mechanism cue
+```
+
+It must not contain:
+
+```text
+multiple unrelated locations
+a journey across several spaces
+a chain of procedural actions
+before/after transformation unless mapped as SINGLE_SHOT_TRANSITION
+hidden montage language such as then, after that, through many offices, across many hands
+```
+
+Good `SINGLE_SHOT` action scale:
+
+```text
+hold
+place
+seal
+carry
+cross one threshold
+measure one object
+wait
+receive
+look
+pause
+one restrained gesture
+```
+
+Bad `SINGLE_SHOT` action scale:
+
+```text
+leave office → travel road → enter county office → get measured → get recorded
+```
+
+That is a sequence, not one `SINGLE_SHOT`.
+
+### 5.3 SINGLE_SHOT_TRANSITION density rule
+
+A `SINGLE_SHOT_TRANSITION` may show **one clear visual change** inside one coherent scene.
+
+It must define:
+
+```text
+state_before
+transition_trigger
+state_after
+one continuous subject or object identity
+one coherent location or threshold
+```
+
+Use it only when the transition itself is the visual idea.
+
+It must not contain:
+
+```text
+multiple unrelated transitions
+several locations
+a full journey
+a procedural chain
+several cause-effect steps compressed into one prompt
+```
+
+Valid transition scale:
+
+```text
+clean command object → touched command object
+empty desk → sealed record bundle placed on desk
+order bundle inside office → same bundle crossing one threshold outward
+```
+
+Invalid transition scale:
+
+```text
+capital office → road → county office → tax point
+```
+
+That is a storyboard sequence, not one transition prompt.
+
+### 5.4 SPLIT_SCREEN_MULTIPANEL density rule
+
+A `SPLIT_SCREEN_MULTIPANEL` is for **simultaneous comparison** or **parallel mechanism display**, not for compressing a sequence.
+
+It should contain:
+
+```text
+2–3 panels preferred
+one shared mechanism or contrast
+one simple visual state per panel
+clear separation between panels
+consistent era and visual style unless contrast requires otherwise
+```
+
+Each panel must behave like a simplified `SINGLE_SHOT`:
+
+```text
+one panel = one subject or subject group + one location + one visible state
+```
+
+It must not contain:
+
+```text
+a full narrative sequence across panels
+more than one action per panel
+multiple time jumps
+too many roles, props, or locations
+panel text labels or readable writing
+montage disguised as split-screen
+```
+
+Good multipanel use:
+
+```text
+left panel: official demand shown as a clean administrative record
+right panel: local retained difference shown as larger grain burden
+shared mechanism: official number versus local extraction margin
+```
+
+Bad multipanel use:
+
+```text
+panel 1 command leaves capital
+panel 2 messenger rides road
+panel 3 clerk records
+panel 4 tax collector measures grain
+panel 5 village pays burden
+```
+
+That is a sequence and should remain separate production shots.
+
+### 5.5 MONTAGE_EDIT boundary
+
+`MONTAGE_EDIT` is **not** a Veo prompt layout and must not become a `prompt_raw.shot_type`.
+
+If a visual idea requires montage:
+
+```text
+keep the production shots as separate SINGLE_SHOT units
+generate each source clip separately
+assemble rhythm in edit
+store montage instructions only as operator/edit notes if the active JSON schema supports them
+```
+
+Do not write one `prompt_raw` that asks Veo to create a montage.
 
 ## 6. Approved prompt_raw Shot Types
 
@@ -520,12 +691,12 @@ dim record-room interior with a protected clerical workspace, primitive low illu
 
 | Layer | Typical source | Role |
 |---|---|---|
-| Layer 1 — Global Channel Contract | `CHANNEL_VEO_PROMPT_RULES.md` | field meaning, field ownership, short-clip discipline |
-| Layer 2 — Global Visual Signature | `CHANNEL_VEO_PROMPT_RULES.md` | channel-level optical, lighting, color, material softness |
+| Layer 1 — Global Channel Contract | `CHANNEL_VEO_PROMPT_RULES_NEW.md` | field meaning, field ownership, source-clip and shot-type density discipline |
+| Layer 2 — Global Visual Signature | `CHANNEL_VEO_PROMPT_RULES_NEW.md` | channel-level optical, lighting, color, material softness |
 | Layer 3 — Session Domain Overlay | `SESSION_CONTROL.md` | civilization/session meaning and guardrails |
-| Layer 4 — Era / Period Overlay | `ERA_LOCK.md` | period accuracy, visual culture, materials, technology |
-| Layer 5 — Social Tier / Role Overlay | `ERA_LOCK.md` or session tier files | class/role-specific body, access, objects, hierarchy |
-| Layer 6 — Location / Space Overlay | `ERA_LOCK.md`, episode visual files, or shot location | architecture, light behavior, spatial logic |
+| Layer 4 — Era / Period Overlay | `CHINA_ERA_LOCK_NEW.md` or active era lock | period accuracy, visual culture, materials, technology |
+| Layer 5 — Social Tier / Role Overlay | `CHINA_ERA_LOCK_NEW.md` / active era lock / session tier files | class/role-specific body, access, objects, hierarchy |
+| Layer 6 — Location / Space Overlay | `CHINA_ERA_LOCK_NEW.md`, active era lock, episode visual files, or shot location | architecture, light behavior, spatial logic |
 | Layer 7 — Mechanism / Concept Overlay | beat/shot planning | what the shot makes visible |
 | Layer 8 — Shot Intent | Optimized Shot Plan / projectbeat | exact subject, action, layout, and visual goal |
 
@@ -617,7 +788,7 @@ This value must come from:
 
 ```text
 EP_VISUAL_LOCK.md
-ERA_LOCK.md
+CHINA_ERA_LOCK_NEW.md
 SESSION_CONTROL.md
 ```
 
@@ -933,7 +1104,7 @@ Layer 1 global contribution:
 subtle vintage analog tape aesthetic expressed as analog air particles, soft volumetric scattering, and reduced digital sharpness
 ```
 
-Layer 4 and Layer 5 belong to the active `ERA_LOCK.md` or session overlay files.
+Layer 4 and Layer 5 belong to the active `CHINA_ERA_LOCK_NEW.md`, active era lock, or session overlay files.
 
 Layer 6 location selection:
 
@@ -1013,7 +1184,7 @@ Layer 1 fixed global base grade:
 deep desaturation, cold slate-greys, deep charcoal, low contrast
 ```
 
-Layer 4 and Layer 5 belong to the active `ERA_LOCK.md` or session overlay files.
+Layer 4 and Layer 5 belong to the active `CHINA_ERA_LOCK_NEW.md`, active era lock, or session overlay files.
 
 Good base pattern:
 
@@ -1101,7 +1272,8 @@ one camera behavior
 one continuous action or controlled stillness
 one readable visual idea
 all 10 fields field-clean
-under-8-second compatible
+shot-type density safe
+trim-friendly as an 8-second source clip
 ```
 
 ---
@@ -1126,7 +1298,7 @@ the before/after contrast must be felt inside one continuous clip
 State 1 and State 2 are both simple enough to read quickly
 there is only one transition trigger
 the destination state resolves clearly
-the whole clip remains under 8 seconds
+the transition remains one stable visual unit inside an 8-second source clip
 ```
 
 Do not use it for:
@@ -1572,7 +1744,7 @@ Civilization-specific props, costumes, grooming, architecture, ritual objects, a
 ```text
 SESSION_CONTROL.md
 EP_VISUAL_LOCK.md
-ERA_LOCK.md
+CHINA_ERA_LOCK_NEW.md
 ```
 
 Laboring / poor / displaced class:
@@ -1947,7 +2119,7 @@ Those belong in:
 ```text
 SESSION_CONTROL.md
 EP_VISUAL_LOCK.md
-ERA_LOCK.md
+CHINA_ERA_LOCK_NEW.md
 ```
 
 ---
@@ -2084,12 +2256,14 @@ one source state
 one destination state
 one physical or optical trigger
 one resolved destination
-under-8-second compatibility
+one continuous subject or object identity
+one coherent location or threshold
+shot-type density safe for an 8-second source clip
 ```
 
 The trigger must not become a third state.
 
-There must be no second transition.
+There must be no second transition, no full journey, and no procedural chain.
 
 ### 20.3 SPLIT_SCREEN_MULTIPANEL validation
 
@@ -2163,15 +2337,19 @@ Does it use only fields defined by the selected template?
 Is prompt_raw structured visual source material, not a finished cinematic paragraph?
 ```
 
-### 21.3 Short-clip safety
+### 21.3 Source-clip and shot-type density safety
 
 ```text
-Is the generated clip under-8-second compatible?
-Does it target about 5–7 seconds when possible?
-Is it one short visual unit?
+Does prompt_raw avoid claiming exact 3s/5s/7s generation duration?
+Is it one stable visual unit for an 8-second source clip?
+Is density evaluated according to the selected shot_type?
+For SINGLE_SHOT, is it one coherent physical scene?
+For SINGLE_SHOT_TRANSITION, is it one coherent scene with one clear transition only?
+For SPLIT_SCREEN_MULTIPANEL, is it simultaneous comparison rather than sequence compression?
 Does it avoid full scene progression?
-Does it avoid multiple location changes?
+Does it avoid multiple unrelated location changes?
 Does it avoid multiple temporal turns?
+Does it avoid hidden montage?
 ```
 
 ### 21.4 Field boundary
@@ -2226,7 +2404,7 @@ before changing lighting or color.
 ```text
 Does the shot follow the active SESSION_CONTROL.md?
 Does it follow the active EP_VISUAL_LOCK.md?
-If an era is assigned, does it follow ERA_LOCK.md?
+If an era is assigned, does it follow CHINA_ERA_LOCK_NEW.md?
 Does it avoid civilization-specific details not supported by active files?
 Does it avoid mixing incompatible eras inside one shot?
 ```
@@ -2248,7 +2426,7 @@ Does rough animation remain flat, hand-inked, parchment-based, and non-corporate
 Does this prompt_raw map from the approved Optimized Shot Plan row?
 Is this shot concrete?
 Is it physical?
-Is it short-clip safe?
+Is it source-clip and shot-type density safe?
 Is it visually readable?
 Is it historically bounded?
 Is it field-clean?
