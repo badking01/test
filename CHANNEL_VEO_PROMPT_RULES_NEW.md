@@ -37,8 +37,7 @@ SESSION_THESIS.md
 SESSION_CONTROL.md
 EP_VISUAL_LOCK.md
 CHINA_ERA_LOCK_NEW.md
-CHANNEL_WORKFLOW_CONTROL_NEW.md
-CHANNEL_WORKFLOW_CONTROL.md only if the older workflow file is explicitly active
+CHANNEL_WORKFLOW_CONTROL.md
 ```
 
 Authority rule:
@@ -2256,14 +2255,12 @@ one source state
 one destination state
 one physical or optical trigger
 one resolved destination
-one continuous subject or object identity
-one coherent location or threshold
-shot-type density safe for an 8-second source clip
+under-8-second compatibility
 ```
 
 The trigger must not become a third state.
 
-There must be no second transition, no full journey, and no procedural chain.
+There must be no second transition.
 
 ### 20.3 SPLIT_SCREEN_MULTIPANEL validation
 
@@ -2331,11 +2328,79 @@ Does prompt_raw avoid merging shots across groups?
 
 ```text
 Does prompt_raw use one approved shot_type only?
-Does it use the correct template for that shot_type?
-Are all required fields present?
+Does it use the correct template name for that shot_type?
+Does the prompt_raw body shape match the selected shot_type template?
+Are all required fields present for that template?
 Does it use only fields defined by the selected template?
 Is prompt_raw structured visual source material, not a finished cinematic paragraph?
 ```
+
+### 21.2A Prompt Raw Template Conformance QA
+
+Before exporting GKStudio / projectbeat JSON, every shot must pass template conformance QA.
+
+This QA checks not only whether `shot_type` is correct, but whether the **body shape** of `prompt_raw` matches the resolved `shot_type`.
+
+Core rule:
+
+```text
+layout → resolved shot_type → required prompt_raw template shape → actual prompt_raw body
+```
+
+Do not pass a shot just because `shot_type` is correct.
+The internal `prompt_raw` structure must also use the correct template for that `shot_type`.
+
+Required conformance matrix:
+
+```text
+SINGLE_SHOT
+→ shot_type = SINGLE_SHOT
+→ prompt_raw must use the flat 10-field SINGLE_SHOT template.
+
+SINGLE_SHOT_TRANSITION
+→ shot_type = SINGLE_SHOT_TRANSITION
+→ prompt_raw must use the transition template with state_1, transition_trigger, and state_2.
+
+SPLIT_SCREEN_2
+→ shot_type = SPLIT_SCREEN_MULTIPANEL
+→ prompt_raw must use the multipanel template with exactly 2 panel scene objects.
+
+SPLIT_SCREEN_3
+→ shot_type = SPLIT_SCREEN_MULTIPANEL
+→ prompt_raw must use the multipanel template with exactly 3 panel scene objects.
+
+MONTAGE_EDIT / MONTAGE_END
+→ no prompt_raw
+→ edit/operator note only.
+```
+
+Template mismatch examples that must fail QA:
+
+```text
+layout = SPLIT_SCREEN_3
+shot_type = SPLIT_SCREEN_MULTIPANEL
+but prompt_raw body is a flat SINGLE_SHOT 10-field structure
+→ FAIL
+
+layout = SINGLE_SHOT_TRANSITION
+shot_type = SINGLE_SHOT_TRANSITION
+but prompt_raw has no state_1, transition_trigger, or state_2
+→ FAIL
+
+layout = SPLIT_SCREEN_2
+shot_type = SPLIT_SCREEN_MULTIPANEL
+but prompt_raw includes panel_3_scene
+→ FAIL
+
+layout = MONTAGE_EDIT
+but prompt_raw exists
+→ FAIL
+```
+
+If template conformance fails, regenerate `prompt_raw` using the correct derived template before export.
+
+Do not fix template mismatch by only changing the `shot_type` value.
+Fix the whole `prompt_raw` body.
 
 ### 21.3 Source-clip and shot-type density safety
 
