@@ -540,6 +540,75 @@ It does not finalize production shots yet.
 It does not create prompt_raw.
 ```
 
+Output rule:
+```text
+When outputting visual_grouping, every Group row must include narration_cue.
+The narration_cue must quote or accurately compress the exact narration lines covered by that Group.
+Do not use broad paraphrases that hide skipped narration.
+If the first narration lines of a beat create a question shift, framing turn, or viewer reorientation, map them before the first mechanism / proof Group.
+```
+
+---
+
+## 6.3A PHASE A — Narration Coverage Check
+
+Before outputting `visual_grouping`, the assistant must perform an internal Narration Coverage Check.
+
+This is a mandatory internal checkpoint.
+
+The purpose is to prevent narration lines from being skipped, silently absorbed into the wrong Group, or replaced too early by a strong visual mechanism.
+
+Before assigning Groups, internally split the beat narration into meaningful narration chunks.
+
+Use the existing workflow vocabulary only:
+```text
+Beat → Group → Shot
+```
+
+Do not introduce extra output layers such as:
+```text
+segment
+scene
+section
+sequence unit
+```
+
+Each meaningful narration chunk must be assigned to exactly one Group unless the user explicitly approves omitting, compressing, or restructuring it.
+
+A Group must start from:
+```text
+narration chunk
+→ viewer turn / local idea
+→ visual function
+→ visual proof
+```
+
+not from:
+```text
+visual motif
+→ Group
+```
+
+Mandatory internal checks:
+```text
+1. Every meaningful narration chunk is covered.
+2. Opening thesis / question-shift lines are not swallowed by later mechanism shots.
+3. A strong visual mechanism does not replace the narration structure too early.
+4. No Group title hides missing narration.
+5. If a narration cue creates a viewer turn, framing turn, or question shift, it must usually get its own Group or be clearly included in a neighboring Group.
+6. If a narration cue is intentionally omitted or compressed, mark it as an explicit compression / restructuring proposal for user approval, not a silent omission.
+```
+
+Do not output this internal checklist by default.
+
+If the user asks why a narration line is missing, explain using the Narration Coverage Check logic.
+
+Core rule:
+```text
+Visual grouping must preserve narration coverage before visual optimization begins.
+Every meaningful narration cue must have a place to live before visual mechanisms are optimized.
+```
+
 ---
 
 ## 6.4 PHASE A — Storyboard Draft
@@ -1857,6 +1926,8 @@ Am I using the correct authority files?
 Am I stopping at the correct workflow boundary?
 Am I creating projectbeat JSON only when this room is supposed to?
 Am I using visual groups rather than SRT to direct shot planning?
+Did I run Narration Coverage Check before outputting visual_grouping?
+Does every meaningful narration cue have a Group before visual mechanisms are optimized?
 Did I first expand storyboard shots before optimizing?
 Did I output beat_visual_flow and wait for user approval when required?
 Did I run Timing Budget Check?
