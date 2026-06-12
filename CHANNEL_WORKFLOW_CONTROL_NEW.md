@@ -570,7 +570,8 @@ Do not introduce extra output layers such as:
 segment
 scene
 section
-sequence unit
+sequence
+unit
 ```
 
 Each meaningful narration chunk must be assigned to exactly one Group unless the user explicitly approves omitting, compressing, or restructuring it.
@@ -657,6 +658,57 @@ Core rule:
 Do not optimize too early.
 First show the expanded single-shot version.
 ```
+
+---
+
+## 6.4A PHASE A — Storyboard Draft Production Anchor Check
+
+Before accepting any `storyboard_draft` row, the assistant must check that the `Visual idea` contains enough production anchor to later become `viewer_sees` and `prompt_raw`.
+
+This is a channel-level planning quality rule.
+
+It must not hardcode civilization-specific place names, role names, objects, costumes, institutions, or historical details.
+
+Concrete production anchors must come from the active authority files, such as:
+```text
+active session control
+active era lock
+active episode brief / script
+active civilization-specific visual authority when explicitly provided
+```
+
+A `Visual idea` must not rely only on abstract or soft placeholders such as:
+```text
+central space
+local side
+administrative space
+power road
+middle layer space
+the system
+the road
+the institution
+```
+
+These terms may explain meaning, but they are not enough as production anchors.
+
+When a shot depends on place, role, object, institution, or social function, the `Visual idea` should include at least one concrete anchor resolved from the active authority files.
+
+The workflow file defines the requirement for anchors.
+
+It does not define the anchors themselves.
+
+For China Session work, use `CHINA_ERA_LOCK_NEW.md`, `CHINA_SESSION_CONTROL.md`, and active episode files to resolve the concrete anchor.
+
+For other sessions, use that session's equivalent authority files.
+
+If the active authority files do not provide enough concrete anchor, flag the row for user review instead of inventing civilization-specific detail.
+
+Core rule:
+```text
+Visual idea may stay shorter than viewer_sees, but it must already contain the active-authority place / role / object / function anchor needed for production.
+```
+
+Do not wait until `prompt_raw` to discover that a shot only says abstract placeholders such as “administrative space”, “local side”, or “road”.
 
 ---
 
@@ -1929,6 +1981,7 @@ Am I using visual groups rather than SRT to direct shot planning?
 Did I run Narration Coverage Check before outputting visual_grouping?
 Does every meaningful narration cue have a Group before visual mechanisms are optimized?
 Did I first expand storyboard shots before optimizing?
+Did each storyboard Visual idea include enough active-authority production anchor before Phase B?
 Did I output beat_visual_flow and wait for user approval when required?
 Did I run Timing Budget Check?
 Did I optimize within Veo-safe production limits?
