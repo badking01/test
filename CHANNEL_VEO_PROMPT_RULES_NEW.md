@@ -1,4 +1,4 @@
-# CHANNEL_VEO_PROMPT_RULES.md
+# CHANNEL_VEO_PROMPT_RULES_NEW.md
 
 ## 1. File Role & Authority
 
