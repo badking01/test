@@ -50,7 +50,6 @@ CHANNEL_VEO_PROMPT_RULES_NEW.md
 CHINA_SESSION_THESIS.md
 CHINA_SESSION_CONTROL.md
 CHINA_ERA_LOCK_NEW.md
-CHINA_EP00_VISUAL_LOCK.md
 CHANNEL_TTS_RULES_CLEAN.md
 ```
 
@@ -70,7 +69,7 @@ Primary workflow inputs for storyboard-prompt work:
 01_SCRIPT.md
 active session rules
 active era lock when needed
-EP visual lock when relevant
+EP00 default visual-era anchor from CHINA_ERA_LOCK_NEW.md when EP00 is active
 CHANNEL_VEO_PROMPT_RULES_NEW.md
 ```
 
@@ -114,7 +113,6 @@ CHANNEL_TTS_RULES_CLEAN.md
 CHINA_SESSION_THESIS.md
 CHINA_SESSION_CONTROL.md
 CHINA_ERA_LOCK_NEW.md
-CHINA_EP00_VISUAL_LOCK.md
 00_BRIEF.md
 01_SCRIPT.md
 02_TTS_CLEAN_BY_BEAT.md
@@ -179,28 +177,40 @@ Use this authority order when multiple files are active.
    = controls China session guardrails, production discipline, and anti-drift rules
 
 5. CHINA_ERA_LOCK_NEW.md
-   = controls historical period visuals for normal China episodes
+   = controls historical period visuals, era / tier / location overlays, and the EP00 default visual-era anchor
 
-6. CHINA_EP00_VISUAL_LOCK.md
-   = EP00-only visual exception for the manifesto episode
-
-7. Episode production files
+6. Episode production files
    = control the specific episode, beat, and shot task at hand
 ```
 
-Normal China episodes do not require a separate episode visual lock by default.
-
-Use:
+China episodes use one shared era-lock system by default:
 ```text
 CHINA_ERA_LOCK_NEW.md
 ```
-for EP01, EP02, and onward.
 
-Use:
+For EP00, if the user does not assign a stricter era, use the EP00 default visual-era anchor defined inside `CHINA_ERA_LOCK_NEW.md`.
+
+Do not route EP00 to a separate EP00 visual lock file by default.
+
+## 2.1 EP00 DEFAULT ERA ROUTING
+
+EP00 does not use a separate EP00 visual lock file in this workflow.
+
+When EP00 is active and the user does not assign a stricter era, route EP00 visual-era anchoring through:
 ```text
-CHINA_EP00_VISUAL_LOCK.md
+CHINA_ERA_LOCK_NEW.md → EP00 Default Visual-Era Anchor → HAN DYNASTY profile
 ```
-only when working on EP00.
+
+This workflow rule only decides where to get the visual-era anchor.
+It must not define EP00 thesis, brief, script, beat logic, shot meaning, or prompt_raw schema.
+
+EP00's default Han-style anchor means:
+```text
+EP00 uses Han-style early imperial China as its default visual language.
+EP00 is not narratively about the Han dynasty unless the script / brief explicitly says so.
+```
+
+If the user explicitly assigns another era to an EP00 shot or section, use that selected era profile from `CHINA_ERA_LOCK_NEW.md` instead.
 
 ---
 
@@ -781,13 +791,9 @@ Group
 
 This order preserves the storyboard decision and prevents prompt-first drift.
 
-`Group`, `Shot`, `Layout`, and `Min visual time` preserve the approved planning/edit structure.
+`Group`, `Shot`, and `Min visual time` are planning/edit metadata.
 
-They do not create prompt_raw visual content except that `Layout` maps to the allowed production `shot_type`.
-
-`Group` groups narration/visual ideas.
-`Shot` identifies the production row.
-`Min visual time` preserves edit/readability timing intent only.
+They do not drive prompt_raw content.
 
 `viewer_sees` must be refined before prompt_raw, but do not output internal anchor scratch fields unless debug mode is explicitly requested.
 
@@ -980,15 +986,18 @@ context = the shared mechanism, comparison, or relationship that binds all panel
 
 Civilization-specific context must come from:
 ```text
-SESSION_CONTROL.md
-EP_VISUAL_LOCK.md when relevant
-CHINA_ERA_LOCK_NEW.md when era-specific visuals are active
+CHINA_SESSION_CONTROL.md
+CHINA_ERA_LOCK_NEW.md
+active episode files such as 00_BRIEF.md / 01_SCRIPT.md
 ```
 
 For EP00:
 ```text
-Use CHINA_EP00_VISUAL_LOCK.md as the default visual anchor authority.
-Do not use CHINA_ERA_LOCK_NEW.md by default unless the user explicitly assigns a strict era.
+Use the EP00 default visual-era anchor defined inside CHINA_ERA_LOCK_NEW.md.
+If no stricter era is assigned by the user, EP00 defaults to the HAN DYNASTY profile as Han-style early imperial China visual language.
+This does not mean EP00 is narratively about the Han dynasty.
+It only means EP00 uses Han-style early imperial China as its default visual language.
+Do not use a separate EP00 visual lock file by default.
 ```
 
 QA Anchor Context must answer:
@@ -1661,7 +1670,7 @@ When creating projectbeat JSON through storyboard-prompt workflow, use this inpu
 1. 01_SCRIPT.md
 2. 00_BRIEF.md
 3. active session files
-4. active era file or EP00 visual exception when relevant
+4. active era file, including EP00 default visual-era anchor from CHINA_ERA_LOCK_NEW.md when EP00 is active
 5. CHANNEL_VEO_PROMPT_RULES_NEW.md
 6. optional 02_TTS_CLEAN_BY_BEAT.md if already approved
 7. optional beat voice audio / draft alignment if already provided
@@ -1790,10 +1799,8 @@ CHINA_SESSION_CONTROL.md
 → defines what the China session must avoid or preserve
 
 CHINA_ERA_LOCK_NEW.md
-→ defines the active period visuals for normal China episodes
-
-CHINA_EP00_VISUAL_LOCK.md
-→ used only for EP00 unless user assigns a strict era
+→ defines active period visuals for all China episodes
+→ includes the EP00 default visual-era anchor when EP00 has no stricter user-assigned era
 ```
 
 Do not assume a separate episode visual lock for normal episodes.
