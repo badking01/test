@@ -153,7 +153,13 @@ clothing logic
 grooming
 body distance from authority
 protected vs exposed position
+restrained but nuanced micro-expressions
+natural facial asymmetry
+age-appropriate skin texture
+role-appropriate fatigue, work marks, and imperfect posture
 ```
+
+Human subjects must stay grounded and physical, not porcelain-smooth or mannequin-like. Facial expression should remain restrained, but it should still show small human variation around the eyes, mouth, posture, and attention.
 
 ### 3.3 camera overlay
 
@@ -209,6 +215,18 @@ not decorative clutter
 
 Written surfaces must stay unreadable.
 
+Administrative record objects must be rendered as period-specific physical record media, not modern office paperwork. Generic terms such as `file`, `document`, `paperwork`, `archive`, `record bundle`, `tax list`, `household register`, `land record`, or `command copy` must be normalized into the active era's material vocabulary before entering `viewer_sees`, `props`, or `material_textures`.
+
+For EP00 / Han-style early imperial China, prefer:
+
+```text
+bound bamboo slips
+corded bamboo-slip record bundles
+wooden tally slips
+sealed command packets
+handled bamboo / wood record surfaces
+```
+
 ### 3.7 material_textures overlay
 
 Use:
@@ -221,6 +239,7 @@ stone / brick when era-appropriate
 bamboo / wood / paper records depending on era
 bronze / iron / lacquer only when era-compatible
 dust, wear, handling marks
+visible skin texture, sweat, dirt, fabric wear, and work marks when appropriate to role and setting
 ```
 
 ### 3.8 lighting_atmosphere overlay
@@ -256,6 +275,21 @@ low contrast
 
 Era profiles may add restrained material-color accents only when physically present.
 
+Social-tier color grading is a subtle atmospheric tendency, not a costume color rule. It may influence saturation, contrast, dust level, material warmth, and environmental polish, but must not override era-specific costume, architecture, props, lighting, location logic, or the channel base grade.
+
+Use only three broad atmosphere families when useful:
+
+```text
+Court / High Power
+→ controlled warm shadows, aged gold only when physically present, dark lacquer, muted red-brown, low-saturation authority
+
+Administrative / Local Elite
+→ muted earth, ink-black, dusty wood brown, faded textile, restrained procedural interior tone
+
+Common / Laboring World
+→ dust, straw, mud, sweat, faded cloth, natural harshness, low-polish earth tones
+```
+
 ### 3.10 visual_constraints overlay
 
 Always protect against:
@@ -270,7 +304,13 @@ readable Chinese text
 wuxia / xianxia / fantasy drift
 modern objects
 glossy costume-drama drift
+porcelain-smooth beauty skin
+mannequin faces
+doll-like stillness
+flawless modern cosmetic finish
 ```
+
+When human subjects are visible, `subject`, `material_textures`, and `visual_constraints` should preserve natural asymmetry, age, fatigue, pores, dust, sweat, dirt, worn fabric, and role-appropriate physical imperfection. Keep expressions restrained, but not blank.
 
 ---
 
@@ -360,10 +400,7 @@ non-glossy
 
 ### 4.6 EP00 Default Visual-Era Anchor
 
-When the active episode is `EP00` and the user does not assign a stricter era, use the `HAN DYNASTY` era profile as the default visual-era anchor.
-
-This does **not** mean EP00 is narratively about the Han dynasty.
-It only means EP00 uses **Han-style early imperial China** as its default visual language.
+When the active episode is `EP00` and the user does not assign a stricter era, use the `HAN DYNASTY` era profile as the default visual-era anchor. This does **not** mean EP00 is narratively about the Han dynasty. It only means EP00 uses **Han-style early imperial China** as its default visual language.
 
 EP00 inherits the Han profile's:
 
@@ -377,8 +414,7 @@ lighting and color accents
 anti-era-mixing guardrails
 ```
 
-Do not copy Han data into a separate EP00 profile.
-Reference the `HAN DYNASTY` profile to avoid duplicate or conflicting rules.
+Do not copy Han data into a separate EP00 profile. Reference the `HAN DYNASTY` profile to avoid duplicate or conflicting rules.
 
 EP00 default visual anchor controls only:
 
