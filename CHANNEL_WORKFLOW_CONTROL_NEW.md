@@ -457,19 +457,98 @@ Cuối beat người xem thấy rõ điều gì?
 Visual mechanism nào chứng minh ý của narration mà không cần nói thẳng?
 ```
 
+Format:
+```text
+Văn xuôi liên tục — 2 đến 4 câu.
+Không phải shot list.
+Không ghi camera term: overhead, slow-motion, cut sang cảnh, fade.
+Không chia thành Cảnh 1 / Cảnh 2.
+```
+
+Anchor Object Rule:
+```text
+Mỗi beat nên có 1 object vật lý xuyên suốt.
+Object đó biến đổi — thể tích, số lượng, trạng thái — 
+qua các tầng của beat để người xem track được sự thay đổi.
+
+Ví dụ: hộc thóc đầy bằng mép ở đầu beat
+        → cùng hộc đó, nhưng khoét sâu hơn ở cuối beat.
+```
+
+Describe Rule :
+```text
+Mô tả điều người xem THẤY.
+Không giải thích điều đó CÓ NGHĨA LÀ GÌ.
+❌ "Đây là nơi procedure làm cho extraction trông hợp lệ."
+   → Giải thích concept. Camera không quay được.
+
+✅ "Mỗi tầng chạm vào hộc thóc theo cách rất vật chất:
+    thêm bao, đổi hộc, điều chỉnh lại khối lượng."
+   → Mô tả điều người xem thấy.
+```
+
+Production Constraint — No Readable Text :
+```text
+Chữ viết trên thẻ tre, sổ sách, văn bản không thể
+hiển thị rõ trong AI-generated video.
+Text sẽ bị mờ, sai ký tự, hoặc vô nghĩa.
+
+Không dùng chữ / số đọc được làm carrier of meaning chính.
+
+Thay thế bằng:
+- Thể tích và số lượng object đếm được
+- Tỉ lệ không gian (pile nhỏ vs pile lớn)
+- Cử chỉ cơ thể (ngón tay, ra hiệu)
+- Hành động vật lý với object (thêm vào, đổi, giữ lại)
+
+Sổ sách / thẻ tre vẫn có thể xuất hiện như prop.
+Nhưng nghĩa không được nằm ở nội dung chữ trong đó.
+```
+
+Era Vocabulary:
+```text
+Không dùng từ ngữ hiện đại hoặc quá chung chung.
+Dùng từ đúng với era và vai trò cụ thể.
+
+❌ người đưa lệnh   →  ✅ dịch tốt / hoạn quan / quan viên thừa chỉ
+❌ bàn công vụ      →  ✅ án thư
+❌ cổng địa phương  →  ✅ cổng lý môn / cổng huyện nha
+❌ bàn đo thóc      →  ✅ hộc gỗ (斛)
+❌ không gian hành chính → ✅ huyện nha / nha môn / quan phủ
+
+Refer to: CHINA_EP00_VISUAL_LOCK.md và CHINA_ERA_LOCK.md
+```
+
 Good:
 ```text
-Beat bắt đầu với một bó lệnh nhỏ, sạch, chính thức nằm trên bàn công vụ. Khi bó lệnh rời khỏi bàn, nó không còn là command thuần nữa; nó đi vào chuỗi tay người, ngưỡng cửa, bàn đo, kho thóc và người ghi nhận. Ở giữa beat, procedure làm cho extraction trông hợp lệ: giữ lại, đo lại, ghi lại, rồi trả một phần thông tin về trung tâm. Beat bẻ ở khoảnh khắc thóc bị tách thành hai hướng: phần official quay về trên giấy tờ, phần difference nằm lại ở tầng địa phương.
+Beat bắt đầu bên dưới triều đình với một hộc thóc 
+tại huyện nha — đầy bằng phẳng với mép, gọn, hợp lệ.
+Điểm nhìn theo hộc đó qua từng tầng xử lý — dịch tốt,
+huyện thừa, lý trưởng — mỗi tầng chạm vào nó theo cách 
+rất vật chất: thêm bao, đổi hộc, điều chỉnh lại khối lượng 
+mà không có chữ nào giải thích. Beat kết thúc bằng hai đống 
+thóc đặt cạnh nhau: đống nhỏ niêm phong sẽ về triều đình, 
+đống lớn hơn nhiều ở lại địa phương — tỉ lệ chênh lệch 
+tự nói thay cho mọi con số.
 ```
 
 Weak:
 ```text
-Lệnh → đường → thóc → hệ thống.
+❌ List: Ngai vàng → hồ sơ → đường → thóc → hệ thống.
+
+❌ Explain: "Road ở đây không phải con đường địa lý đơn giản.
+   Nó là một chuỗi không gian quyền lực..."
+
+❌ Shot list: "Camera overhead nhìn xuống sân đình.
+   Slow-motion reveal thành hộc khoét sâu.
+   Cut lạnh sang cảnh trong triều đình."
 ```
 
 Core rule:
 ```text
-beat_visual_flow = visual causality chain + thesis pressure across the beat.
+beat_visual_flow = visual causality chain across the beat.
+Người xem phải thấy được sự thay đổi — không cần ai 
+giải thích cho họ tại sao nó xảy ra.
 ```
 
 Approval rule:
