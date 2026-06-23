@@ -1,0 +1,54 @@
+{
+  "project_metadata": {
+    "title": "",
+  },
+  "assets": {
+    "characters": [
+      {
+        "character_id": "char_1",
+        "name": "",
+        "description": "",
+        "outfit" : ""
+      }
+    ],
+    "environments": [
+      {
+        "env_id": "env_1",
+        "name": "",
+        "description": ""
+      }
+    ],
+    "props": [
+      {
+        "prop_id": "prop_1",
+        "name": "",
+        "description": ""
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "block_id": "block_01",
+      "block_type": "scene",
+      "title": "",
+      "description": "",
+      "shots": [
+        {
+          "shot_id": "shot_01_01",
+          "title": "",
+          "CLASS_LEVEL": "", // Emperor and High-ranking Court Officials
+          "environment_type": "",// [indoor_lighting/outdoor_lighting]
+          "linked_assets": {
+            "characters": [],
+            "environment": "",
+            "props": []
+          },
+          "image_prompt": "",
+          "video_motion_prompt": "",
+          "duration": 5,
+          "voiceover": ""
+        }
+      ]
+    }
+  ]
+}
