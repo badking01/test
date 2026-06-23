@@ -1,6 +1,7 @@
 # Tổng quát Prompt
 {
   "global_setup": {...},
+  "production_asset": {...},
   "production_output": {...}
 }
 
