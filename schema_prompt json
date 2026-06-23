@@ -1,0 +1,245 @@
+# Tổng quát Prompt
+{
+  "global_setup": {...},
+  "production_output": {...}
+}
+
+---
+
+# All chủ đề
+## global_setup
+1. Khung schema ngắn
+{
+  "global_setup": {
+    "profile_family": "",
+    "profile_variant": "",
+    "global_camera": "",
+    "global_color_grading": {},
+    "global_constraints": {},
+    "global_visual_style": {}
+  }
+}
+
+2. Template gợi ý ý nghĩa
+Để room AI hiểu phải điền cái gì và điền nhằm mục đích gì.
+Ví dụ nên ghi theo kiểu mô tả ngay bên cạnh hoặc trong doc adapter:
+profile_family
+nhóm phong cách hoặc nhóm chủ đề tổng quát
+ví dụ: historical documentary, music video cinematic, true crime realism
+
+profile_variant
+biến thể cụ thể trong nhóm đó
+ví dụ: Han Dynasty power transition, melancholic neon night
+
+global_camera
+bộ lọc ngôn ngữ máy quay chung
+dùng để khóa chất quang học, độ mềm, grain, cảm giác điện ảnh chung
+không phải nơi mô tả toàn cảnh hay cận cảnh từng shot
+
+global_color_grading
+hệ màu nền áp cho toàn sequence
+dùng để khóa base tone, blend màu theo chủ đề, và logic màu chung
+
+global_constraints
+luật nền bắt buộc cho toàn output
+dùng để khóa tính chân thực, tính lịch sử, texture discipline, logic vật thể, logic hình ảnh
+
+global_visual_style
+thư viện style nền có thể được shot-level selector gọi xuống
+ví dụ: indoor_lighting, outdoor_lighting, material logic
+
+Template :
+{
+  "global_setup": {
+    "profile_family": "overall theme family or genre family",
+    "profile_variant": "specific variation inside that family",
+    "global_camera": "shared cinematic lens and image-behavior signature for the whole output",
+    "global_color_grading": {
+      "base_cinematic_tone": "overall tonal base applied across the sequence",
+      "theme_color_blend": "topic-specific or world-specific color identity",
+      "palette_accent": "optional accent logic that can react to the subject or shot context"
+    },
+    "global_constraints": {
+      "core_fidelity": "non-shot-specific realism or authenticity rules applied across the output",
+      "material_rules": "shared rules for how surfaces, text, props, and objects should appear"
+    },
+    "global_visual_style": {
+      "atmospheric_render": {
+        "indoor_lighting": "shared indoor lighting behavior that shot-level prompts can call",
+        "outdoor_lighting": "shared outdoor lighting behavior that shot-level prompts can call"
+      }
+    }
+  }
+}
+
+Example 1 :
+{
+  "global_setup": {
+  "profile_family": "Historical China Documentary",
+  "profile_variant": "Han Dynasty Power Transition",
+  "ERA_ANCHOR": "Han Dynasty",
+  "global_camera": "Restrained cinematic documentary framing, observational camera language, soft analog anamorphic lens rendering with subtle lens aberration and soft edge roll-off, vintage film grain texture, shallow depth of field where needed, absolutely no modern digital polish.",
+  "global_color_grading": {
+    "base_cinematic_tone": "Deep desaturation, cold slate-greys, charcoal shadows, low contrast, aged historical material palette.",
+    "era_color_blend": "Infused with the authentic historical color palette of ERA_ANCHOR material culture, prioritizing natural organic dyes, oxidized dark tones, and weathered timber browns.",
+    "class_palette_accent": "Strictly execute the designated [MATERIAL_SWITCH] rule below that exactly matches the active CLASS_LEVEL status defined in each specific shot, overriding and suppressing any non-applicable class luxury textures."
+  },
+  "global_constraints": {
+    "historical_fidelity": "Strict adherence to authentic clothing structure, historically appropriate headwear, hairstyle logic, and social presentation based directly on verified archaeological museum findings and excavation artifacts from the specified ERA_ANCHOR period, expressed in a manner that perfectly corresponds to the designated CLASS_LEVEL of each shot.",
+    "prop_texture_rules": "Any written material must appear as bamboo slips, wooden slips, sealed bundles, or blurred ancient ink surfaces with no clean modern readable text."
+  },
+  "global_visual_style": {
+    "atmospheric_render": {
+      "indoor_lighting": "Dim interior side-light from a narrow architectural opening, creating deep protected shadows, visible floating dust, soft analog air density, and reduced digital sharpness.",
+      "outdoor_lighting": "Unified muted overcast day sky with low diffused exterior light, cold air atmosphere, restrained shadows, and soft haze across the environment."
+    },
+    "MATERIAL_SWITCH": {
+      "Emperor and High-ranking Court Officials": {
+        "textiles": "Heavy refined silk robes, exquisite fine-woven ceremonial fabrics, intricate borders, status-coded dark mineral reds and deep blacks.",
+        "surfaces": "Polished high-grade dark timber columns, pristine ceremonial court stone, immaculate institutional surfaces."
+      },
+      "Common Urban Laborer, farmer": {
+        "textiles": "Coarse woven hemp, rough textured linen fabrics, heavily worn and faded garments, plain undyed cloth, patchworks with earthy tones.",
+        "surfaces": "Rough-hewn weathered wood, distressed crude timber, dusty packed dirt floors, weathered gritty stone, soot-stained surfaces."
+      }
+    }
+  },
+}
+}
+
+Example 2:
+{
+  "global_setup": {
+    "profile_family": "Music Video Cinematic",
+    "profile_variant": "Melancholic Neon Night",
+    "genre_anchor": "Contemporary emotional music video",
+    "global_camera": "Cinematic music-video lens language, soft anamorphic bloom, elegant highlight roll-off, subtle halation, controlled handheld intimacy where needed, polished but not overly digital, smooth motion cadence for lyrical visual storytelling.",
+    "global_color_grading": {
+      "base_cinematic_tone": "Moody low-saturation contrast with soft blacks, luminous skin tones, restrained neon spill, and atmospheric night depth.",
+      "genre_color_blend": "Blend deep blue, muted magenta, dim amber practical light, and rain-soaked reflective surfaces for an emotional urban night atmosphere.",
+      "mood_palette_accent": "Each shot should preserve a melancholic romantic palette with selective warm highlights inside an otherwise cool and lonely city environment."
+    },
+    "global_constraints": {
+      "visual_identity": "Maintain a contemporary cinematic music video identity through expressive framing, emotionally readable body language, stylish wardrobe coherence, and strong environment-to-mood alignment.",
+      "material_rules": "Surfaces should feel tactile and cinematic: wet asphalt, reflective glass, brushed metal, soft fabric movement, neon reflections, atmospheric haze, and realistic urban night textures."
+    },
+    "global_visual_style": {
+      "atmospheric_render": {
+        "indoor_lighting": "Soft practical interior lighting with window spill, moody shadow falloff, light haze in the air, warm lamp glow, and intimate emotional contrast.",
+        "outdoor_lighting": "Night exterior with neon reflections, diffused street lighting, soft mist, wet ground reflections, and cinematic depth through haze and urban light scatter."
+      }
+    }
+  }
+}
+---
+## production_output
+"production_output": {
+  "output_mode": "",
+  "sequence" : "",
+  "shots": []
+}
+- "sequence" : "Start with the exact composition of [Ảnh A]. Transform into the visual state of [Ảnh C] at mid-point. Conclude the motion at the final pose of [Ảnh B].",
+- "sequence": "shot_01_01 (0s) -> shot_01_02 (2s) -> shot_01_03 (4s) -> shot_01_04(6s) -> End(8s)"
+- Để AI hiểu tốt nhất field "sequence", nên bổ sung thêm một chỉ dẫn trong khối global_constraints: "Strictly follow the time-stamped sequence defined in each shot. Execute a clean cut or rapid transition at each designated second marker."
+Sau này có thể mở rộng để không chỉ có shots, mà còn:
+asset_rendering
+image_ref_generation
+video_generation
+Nhưng để trước mắt chỉ dùng shots[] cũng ổn.
+
+production_output.shots[]
+{
+  "shot_id": "shot_01_01",
+  "title": "",
+  "CLASS_LEVEL": "",
+  "environment_type": "",
+  "linked_assets": {
+    "characters": [],
+    "environment": "",
+    "props": []
+  },
+  "transition": "cut",
+  "duration": 5,
+  "prompt": "" 
+}
+Example 1:
+    {
+      "shot_id": "shot_01_01",
+      "title": "Imperial Court Axis",
+      "CLASS_LEVEL": "Emperor and High-ranking Court Officials",
+      "environment_type": "indoor_lighting",
+      "linked_assets": {
+        "characters": [],
+        "environment": "",
+        "props": []
+      },
+      "duration": 2,
+      "transition": "cut",
+      "prompt": "Professional still photography, Han Dynasty. Dim interior court hall, familiar imperial memory seen through the visible surface of palace authority. Deep background holds the imperial figure on the central axis; foreground and middle ground remain mostly empty or lightly occupied by dark architectural lines, making the ruler feel distant, elevated, and symbolic. Frozen moment: controlled stillness, with only slight fabric movement and suspended dust in the air. Textures and lighting automatically derived from global indoor parameters."
+    }
+
+Example 2:
+  "production_output": {
+    "output_mode": "SHOT_SEQUENCE_GENERATION",
+    "shots": [
+      {
+        "shot_id": "shot_01_01",
+        "title": "Rain Street Establishing",
+        "CLASS_LEVEL": "Lead Performer",
+        "environment_type": "outdoor_lighting",
+        "prompt": "Wide establishing shot on a rain-soaked city street at night. The lead performer walks alone down the center of the reflective road, surrounded by distant headlights, storefront glow, and wet asphalt reflections. The frame feels open, lonely, and emotionally exposed."
+      },
+      {
+        "shot_id": "shot_01_02",
+        "title": "Taxi Window Profile",
+        "CLASS_LEVEL": "Lead Performer",
+        "environment_type": "indoor_lighting",
+        "prompt": "Medium close profile shot inside the back seat of a taxi at night. The lead performer sits by the rain-covered window while city neon streaks smear across the glass outside. Passing streetlights rhythmically wash over the face, creating a moving cocoon of isolation and memory."
+      },
+      {
+        "shot_id": "shot_01_03",
+        "title": "Apartment Window Verse",
+        "CLASS_LEVEL": "Lead Performer",
+        "environment_type": "indoor_lighting",
+        "prompt": "Medium shot inside a dim apartment by a tall rain-marked window. The lead performer stands still with one hand resting near the glass, singing softly into the silence. Warm practical lamp light behind the body contrasts with cold blue city light from outside."
+      },
+      {
+        "shot_id": "shot_01_04",
+        "title": "Phone Booth Reflection",
+        "CLASS_LEVEL": "Lead Performer",
+        "environment_type": "outdoor_lighting",
+        "prompt": "Contained medium shot inside a glowing roadside phone booth at night. The lead performer stands surrounded by fogged glass, reflected neon, and rain droplets, holding still between making a call and giving up. The booth feels like a small emotional island inside the city."
+      },
+      {
+        "shot_id": "shot_01_05",
+        "title": "Subway Platform Distance",
+        "CLASS_LEVEL": "Lead Performer",
+        "environment_type": "indoor_lighting",
+        "prompt": "Long-lens shot on an almost empty subway platform. The lead performer stands alone near the yellow line while receding tunnel lights and polished floor reflections stretch away into depth. The shot emphasizes waiting, emotional suspension, and urban loneliness."
+      },
+      {
+        "shot_id": "shot_01_06",
+        "title": "Narrow Alley Memory Crossing",
+        "CLASS_LEVEL": "Lead Performer and Memory Figure",
+        "environment_type": "outdoor_lighting",
+        "prompt": "Slow observational shot in a narrow alley split by blue neon from above and warm sodium light from behind. The lead performer pauses in the foreground while a memory figure crosses the far end of the alley for only a brief moment. The composition suggests missed connection and emotional afterimage."
+      },
+      {
+        "shot_id": "shot_01_07",
+        "title": "Rooftop Chorus Release",
+        "CLASS_LEVEL": "Lead Performer",
+        "environment_type": "outdoor_lighting",
+        "prompt": "Wide rooftop night shot during the emotional lift of the chorus. The lead performer stands near the edge with city towers behind, coat moving lightly in the wind, while haze and distant building lights create a vast luminous backdrop. The frame opens up into release without losing its melancholy."
+      },
+      {
+        "shot_id": "shot_01_08",
+        "title": "Bridge Departure Ending",
+        "CLASS_LEVEL": "Lead Performer",
+        "environment_type": "outdoor_lighting",
+        "prompt": "Long closing shot on a pedestrian bridge above a wet avenue. The lead performer walks away from camera into pale mist, passing sparse streetlamps and blurred traffic light below. The final image carries emotional withdrawal, quiet acceptance, and unresolved longing."
+      }
+    ]
+  }
+---
+
+
