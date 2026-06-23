@@ -240,6 +240,25 @@ Example 2:
       }
     ]
   }
+
+Example 3:
+"production_output": {
+  "output_mode": "character_asset",
+  "sequence" : "",
+  "characters": [
+    {
+      "char_id": "char_001",
+      "CLASS_LEVEL": "Common Urban Laborer",
+      "environment_type": "indoor_lighting",
+      "model_sheet_style": "Clean solid white background, flat studio reference lighting, isolated full-body historical reference portrait.",
+      "appearance": "Middle-aged East Asian man, weathered face, practical body posture, visible life-worn presence.",
+      "role_identity": "A working commoner in an early imperial Chinese urban setting.",
+      "outfit": "Historically grounded common labor clothing appropriate to the designated CLASS_LEVEL and ERA context, with practical wrapping structure, worn fabric behavior, and simple fastening logic.",
+      "carried_items": "A small practical hand-carried object associated with daily labor.",
+      "camera_and_lens": "Full-body shot, eye-level, centered reference framing."
+    }
+  ]
+}
 ---
 
 
